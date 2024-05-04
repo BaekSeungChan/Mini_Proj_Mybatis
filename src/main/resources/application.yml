@@ -1,0 +1,29 @@
+server:
+  port: 8888
+  servlet:
+#    context-path: /
+    jsp:
+      init-parameters:
+        development: true
+
+
+spring:
+  # JSP
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+  #database
+  datasource:
+    url: "jdbc:mariadb://localhost:3306/mini_proj2"
+    username: "root"
+    password: "Qortmdcks95"
+    driver-class-name: org.mariadb.jdbc.Driver
+
+
+
+mybatis:
+  config-location: classpath:mybatis-config.xml  # MyBatis ?? ?? ??
+  mapper-locations: classpath:mapper/*.xml  # Mapper ?? ??
+  map-underscore-to-camel-case: true
