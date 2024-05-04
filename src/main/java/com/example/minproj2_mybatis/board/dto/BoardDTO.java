@@ -6,6 +6,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 @Builder
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -21,8 +22,7 @@ public class BoardDTO {
 
     private String password;
 
-    @Builder.Default
-    private int readCount = 0;
+    private int readCount;
 
     private LocalDateTime writeTime;
 

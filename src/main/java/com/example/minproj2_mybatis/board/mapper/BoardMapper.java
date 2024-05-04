@@ -18,4 +18,6 @@ public interface BoardMapper {
     int updateById(BoardEntity boardEntity);
 
     int deleteById(Long id);
+
+    void plusCount(Long id);
 }

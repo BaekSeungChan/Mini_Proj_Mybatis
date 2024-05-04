@@ -25,4 +25,8 @@
     <delete id="deleteById" parameterType="Long">
         DELETE FROM BOARD WHERE id = #{id}
     </delete>
+
+    <update id="plusCount">
+        UPDATE BOARD SET readCount = readCount + 1 WHERE id = #{id}
+    </update>
 </mapper>
