@@ -22,13 +22,39 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/list")
-    public String list(Model model){
-        List<BoardDTO> board = boardService.findAll();
+    public String list(
+            @RequestParam(name = "id", required = false) Long id,
+            @RequestParam(name = "title", required = false) String title,
+            @RequestParam(name = "writer", required = false) String writer,
+            @RequestParam(name = "content", required = false) String content,
+            Model model
+    ){
+        List<BoardDTO> board;
 
+        // Build the BoardDTO with optional parameters
+        BoardDTO boardDTO = BoardDTO.builder()
+                .id(id)
+                .title(title)
+                .writer(writer)
+                .content(content)
+                .build();
+
+
+        if(boardDTO != null){
+            board = boardService.searchFind(boardDTO);
+        } else {
+            board = boardService.findAll();
+        }
+
+        // Call the service method to search for boards
+
+        // Add the list of boards to the model
         model.addAttribute("list", board);
 
+        // Return the view name
         return "board/list";
     }
+
 
     @GetMapping("/detail")
     public String detail(@RequestParam("id") Long id, Model model){

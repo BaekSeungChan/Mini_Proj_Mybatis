@@ -20,4 +20,6 @@ public interface BoardMapper {
     int deleteById(Long id);
 
     void plusCount(Long id);
+
+    List<BoardEntity> searchFindAll(BoardEntity boardEntity);
 }

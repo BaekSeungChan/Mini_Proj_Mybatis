@@ -83,7 +83,7 @@
     <div class="col-md-10 offset-md-1">
         <div class="row">
             <div class="col text-start">
-                (${pagination.current}/${pagination.total})
+                (1/125)
             </div>
             <div class="col text-end">
                 <a href="/board/write" class="btn btn-primary">글쓰기</a>

@@ -29,4 +29,19 @@
     <update id="plusCount">
         UPDATE BOARD SET readCount = readCount + 1 WHERE id = #{id}
     </update>
+
+    <select id="searchFindAll" resultType="board">
+        SELECT *
+        FROM BOARD
+        <where>
+            <if test="id != null"> AND id = #{id}</if>
+            <if test="title != null and title != ''"> AND title LIKE CONCAT('%', #{title}, '%')</if>
+            <if test="content != null and content != ''"> AND content LIKE CONCAT('%', #{content}, '%')</if>
+            <if test="writer != null and writer != ''"> AND writer LIKE CONCAT('%', #{writer}, '%')</if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+
+
 </mapper>

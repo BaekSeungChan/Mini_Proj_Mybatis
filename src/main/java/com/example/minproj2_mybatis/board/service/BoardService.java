@@ -61,4 +61,10 @@ public class BoardService {
         return boardMapper.deleteById(id);
     }
 
+    public List<BoardDTO> searchFind(BoardDTO boardDTO){
+        List<BoardEntity> boardEntities = boardMapper.searchFindAll(BoardEntity.toEntity(boardDTO));
+
+        return boardEntities.stream().map(board -> BoardDTO.toDTO(board)).collect(Collectors.toList());
+    }
+
 }
