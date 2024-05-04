@@ -9,4 +9,13 @@
         VALUES ( #{writer}, #{title}, #{content}, #{password}, #{readCount})
     </insert>
 
+
+    <select id="findAll" resultType="board">
+        SELECT * FROM BOARD ORDER BY id DESC
+    </select>
+
+    <select id="findById" parameterType="Long" resultType="board">
+        SELECT * FROM BOARD WHERE id = #{id}
+    </select>
+
 </mapper>

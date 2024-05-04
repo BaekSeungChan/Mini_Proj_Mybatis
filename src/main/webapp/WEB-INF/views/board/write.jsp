@@ -14,6 +14,7 @@
     <input type="text" id="title" name="title" placeholder="제목"><br><br>
     <input type="text" id="writer" name="writer" placeholder="작성자"><br><br>
     <textarea name="content" id="content" rows="15" placeholder="내용"></textarea><br><br>
+    <input type="password" id="password" name="password" placeholder="비밀번호"><br><br>
     <button type="submit">등록</button>
 </form>
 </body>

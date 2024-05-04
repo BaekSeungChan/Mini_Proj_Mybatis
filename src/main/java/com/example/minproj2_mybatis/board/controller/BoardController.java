@@ -6,7 +6,10 @@ import com.example.minproj2_mybatis.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/board")
@@ -17,9 +20,22 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/list")
-    public String list(){
+    public String list(Model model){
+        List<BoardDTO> board = boardService.findAll();
+
+        model.addAttribute("list", board);
 
         return "board/list";
+    }
+
+    @GetMapping("/detail")
+    public String detail(@RequestParam("id") Long id, Model model){
+
+        BoardDTO boardDTO = boardService.findById(id);
+
+        model.addAttribute("board", boardDTO);
+
+        return "board/detail";
     }
 
     @GetMapping("/write")
@@ -31,12 +47,14 @@ public class BoardController {
     public String write(
             @RequestParam("title") String title,
             @RequestParam("writer") String writer,
-            @RequestParam("content") String content
+            @RequestParam("content") String content,
+            @RequestParam("password") String password
     ){
 
         BoardDTO boardDTO = BoardDTO.builder()
                 .title(title)
                 .writer(writer)
+                .password(password)
                 .content(content)
                 .build();
 
@@ -49,4 +67,5 @@ public class BoardController {
             return "/write";
         }
     }
+
 }

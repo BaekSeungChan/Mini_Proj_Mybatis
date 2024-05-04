@@ -1,5 +1,6 @@
 package com.example.minproj2_mybatis.board.dto;
 
+import com.example.minproj2_mybatis.board.entity.BoardEntity;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -18,14 +19,26 @@ public class BoardDTO {
 
     private String writer;
 
-    @Builder.Default
-    private String password = "1234";
+    private String password;
 
     @Builder.Default
-    private int readCount = 1;
+    private int readCount = 0;
 
     private LocalDateTime writeTime;
 
     private LocalDateTime editTime;
+
+
+    public static BoardDTO toDTO(BoardEntity boardEntity){
+        return BoardDTO.builder()
+                .id(boardEntity.getId())
+                .title(boardEntity.getTitle())
+                .writer(boardEntity.getWriter())
+                .content(boardEntity.getContent())
+                .readCount(boardEntity.getReadCount())
+                .writeTime(boardEntity.getWriteTime())
+                .editTime(boardEntity.getEditTime())
+                .build();
+    }
 
 }
