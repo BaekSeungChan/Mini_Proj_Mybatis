@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="">
+<mapper namespace="com.example.minproj2_mybatis.board.mapper.BoardMapper">
 
+    <insert id="save" parameterType="board">
+        INSERT INTO BOARD (writer, title, content, password, readCount )
+        VALUES ( #{writer}, #{title}, #{content}, #{password}, #{readCount})
+    </insert>
 
 </mapper>

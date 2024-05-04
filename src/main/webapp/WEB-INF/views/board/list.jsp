@@ -11,5 +11,6 @@
 </head>
 <body>
     <h1>list Page</h1>
+    <a href="/board/write">글 작성</a>
 </body>
 </html>
