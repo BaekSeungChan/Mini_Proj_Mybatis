@@ -34,14 +34,18 @@
         SELECT *
         FROM BOARD
         <where>
-            <if test="id != null"> AND id = #{id}</if>
-            <if test="title != null and title != ''"> AND title LIKE CONCAT('%', #{title}, '%')</if>
-            <if test="content != null and content != ''"> AND content LIKE CONCAT('%', #{content}, '%')</if>
-            <if test="writer != null and writer != ''"> AND writer LIKE CONCAT('%', #{writer}, '%')</if>
+            <if test="boardEntity.id != null"> AND id = #{boardEntity.id}</if>
+            <if test="boardEntity.title != null and boardEntity.title != ''"> AND title LIKE CONCAT('%', #{boardEntity.title}, '%')</if>
+            <if test="boardEntity.content != null and boardEntity.content != ''"> AND content LIKE CONCAT('%', #{boardEntity.content}, '%')</if>
+            <if test="boardEntity.writer != null and boardEntity.writer != ''"> AND writer LIKE CONCAT('%', #{boardEntity.writer}, '%')</if>
         </where>
         ORDER BY id DESC
+        LIMIT #{start}, #{limit}
     </select>
 
 
+    <select id="boardCount" resultType="Integer">
+        SELECT count(id) FROM BOARD
+    </select>
 
 </mapper>

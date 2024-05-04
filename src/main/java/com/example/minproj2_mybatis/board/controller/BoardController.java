@@ -1,6 +1,7 @@
 package com.example.minproj2_mybatis.board.controller;
 
 import com.example.minproj2_mybatis.board.dto.BoardDTO;
+import com.example.minproj2_mybatis.board.dto.PageDTO;
 import com.example.minproj2_mybatis.board.entity.BoardEntity;
 import com.example.minproj2_mybatis.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/board")
@@ -20,18 +23,16 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
-
     @GetMapping("/list")
     public String list(
             @RequestParam(name = "id", required = false) Long id,
             @RequestParam(name = "title", required = false) String title,
             @RequestParam(name = "writer", required = false) String writer,
             @RequestParam(name = "content", required = false) String content,
+            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             Model model
-    ){
-        List<BoardDTO> board;
-
-        // Build the BoardDTO with optional parameters
+    ) {
+        // 다중 검색 조건을 이용하여 BoardDTO를 생성합니다.
         BoardDTO boardDTO = BoardDTO.builder()
                 .id(id)
                 .title(title)
@@ -39,22 +40,18 @@ public class BoardController {
                 .content(content)
                 .build();
 
+        // 검색 결과와 페이지 정보를 가져옵니다.
+        List<BoardDTO> board = boardService.searchFind(boardDTO, page);
+        PageDTO pageDTO = boardService.pagingParam(page);
 
-        if(boardDTO != null){
-            board = boardService.searchFind(boardDTO);
-        } else {
-            board = boardService.findAll();
-        }
-
-        // Call the service method to search for boards
-
-        // Add the list of boards to the model
+        // 검색 결과와 페이지 정보를 모델에 추가합니다.
         model.addAttribute("list", board);
+        model.addAttribute("paging", pageDTO);
 
-        // Return the view name
+        // View 이름을 반환합니다.
         return "board/list";
     }
-
+    
 
     @GetMapping("/detail")
     public String detail(@RequestParam("id") Long id, Model model){
@@ -140,4 +137,5 @@ public class BoardController {
             return "/write";
         }
     }
+
 }
