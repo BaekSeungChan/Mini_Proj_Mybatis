@@ -22,5 +22,7 @@
         UPDATE BOARD SET writer=#{writer}, title=#{title}, content=#{content} WHERE id = #{id}
     </update>
 
-
+    <delete id="deleteById" parameterType="Long">
+        DELETE FROM BOARD WHERE id = #{id}
+    </delete>
 </mapper>

@@ -52,7 +52,7 @@
 
 <h2><button onclick="listFn()">목록</button></h2>
 <h2><button onclick="updateFn()">수정</button></h2>
-<h2><button>삭제</button></h2>
+<h2><button onclick="deleteFn()">삭제</button></h2>
 
 
 <script>

@@ -45,4 +45,8 @@ public class BoardService {
         return boardMapper.updateById(boardEntity);
     }
 
+
+    public int deleteBoard(Long id){
+        return boardMapper.deleteById(id);
+    }
 }

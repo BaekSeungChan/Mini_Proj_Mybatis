@@ -16,4 +16,6 @@ public interface BoardMapper {
     BoardEntity findById(Long id);
 
     int updateById(BoardEntity boardEntity);
+
+    int deleteById(Long id);
 }

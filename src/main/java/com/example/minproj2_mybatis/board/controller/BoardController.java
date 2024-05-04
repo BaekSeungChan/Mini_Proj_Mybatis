@@ -102,4 +102,15 @@ public class BoardController {
             return "/write";
         }
     }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") Long id){
+        int result = boardService.deleteBoard(id);
+
+        if(result > 0){
+            return "redirect:/board/list";
+        } else {
+            return "/write";
+        }
+    }
 }
