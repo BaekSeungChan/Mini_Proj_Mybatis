@@ -34,4 +34,15 @@ public class BoardService {
         }
         return null;
     }
+
+    public int updateBoard(BoardDTO boardDTO) {
+        BoardEntity boardEntity = boardMapper.findById(boardDTO.getId());
+
+        boardEntity.setTitle(boardDTO.getTitle());
+        boardEntity.setWriter(boardDTO.getWriter());
+        boardEntity.setContent(boardDTO.getContent());
+
+        return boardMapper.updateById(boardEntity);
+    }
+
 }

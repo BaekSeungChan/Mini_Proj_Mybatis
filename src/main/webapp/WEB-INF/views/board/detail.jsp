@@ -11,7 +11,7 @@
     <title></title>
 </head>
 <body>
-<h1>${baord.id}번 글 상세</h1>
+<h1>${board.id}번 글 상세</h1>
 <table border="1" width="500">
     <tr>
         <th width="25%">번호</th>
@@ -50,8 +50,23 @@
     </tr>
 </table>
 
-<h2><a href="/board/list">목록</a></h2>
-<h2><a href="#">수정</a></h2>
-<h2><a href="#">삭제</a></h2>
+<h2><button onclick="listFn()">목록</button></h2>
+<h2><button onclick="updateFn()">수정</button></h2>
+<h2><button>삭제</button></h2>
+
+
+<script>
+    const listFn = () => {
+        location.href = "/board/list"
+    }
+
+    const updateFn = () => {
+        location.href = "/board/edit?id=${board.id}"
+    }
+
+    const deleteFn = () => {
+        location.href = "/board/delete?id=${board.id}"
+    }
+</script>
 </body>
 </html>

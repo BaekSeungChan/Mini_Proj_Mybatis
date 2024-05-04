@@ -18,4 +18,9 @@
         SELECT * FROM BOARD WHERE id = #{id}
     </select>
 
+    <update id="updateById" parameterType="board">
+        UPDATE BOARD SET writer=#{writer}, title=#{title}, content=#{content} WHERE id = #{id}
+    </update>
+
+
 </mapper>

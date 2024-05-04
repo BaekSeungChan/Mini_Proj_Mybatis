@@ -5,6 +5,7 @@ import com.example.minproj2_mybatis.board.entity.BoardEntity;
 import com.example.minproj2_mybatis.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -68,4 +69,37 @@ public class BoardController {
         }
     }
 
+
+    @GetMapping("/edit")
+    public String edit(@RequestParam("id") Long id, Model model){
+        BoardDTO boardDTO = boardService.findById(id);
+
+        model.addAttribute("board", boardDTO);
+
+        return "/board/edit";
+    }
+
+    @PostMapping("/edit")
+    public String edit(
+            @RequestParam("id") Long id,
+            @RequestParam("title") String title,
+            @RequestParam("writer") String writer,
+            @RequestParam("content") String content
+            ){
+
+        BoardDTO boardDTO = BoardDTO.builder()
+                .id(id)
+                .title(title)
+                .writer(writer)
+                .content(content)
+                .build();
+
+        int result = boardService.updateBoard(boardDTO);
+
+        if(result > 0){
+            return "redirect:/board/list";
+        } else {
+            return "/write";
+        }
+    }
 }

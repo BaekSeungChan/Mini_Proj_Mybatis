@@ -14,4 +14,6 @@ public interface BoardMapper {
     List<BoardEntity> findAll();
 
     BoardEntity findById(Long id);
+
+    int updateById(BoardEntity boardEntity);
 }
