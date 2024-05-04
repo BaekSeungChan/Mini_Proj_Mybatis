@@ -25,7 +25,7 @@
             <div class="card-header">
                 <a class="btn" data-bs-toggle="collapse" href="#collapse-body">검색 도구 상자</a>
             </div>
-            <div class="collapse show" id="collapse-body">
+            <div class="collapse" id="collapse-body">
                 <div class="card-body">
                     <form method="get" class="search-form" action="/board/list">
                         <%--   번호 검색    --%>

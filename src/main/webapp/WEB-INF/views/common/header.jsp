@@ -14,7 +14,7 @@
 
     <style>
         .empty-space {
-            height: 10px;
+            height: 20px;
         }
 
         .navbar {
