@@ -40,7 +40,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/member/new">Login</a>
+                    <a class="nav-link" href="/member/login">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/member/logout">Logout</a>
