@@ -1,35 +1,39 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 
-<html>
-<head>
-    <title>사용자 등록 페이지</title>
-</head>
-<body>
-<h1>사용자 등록 페이지</h1>
-<form action="/member/new" method="post">
-    <%--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-    <div>
-        <label>이름 : <input type="text" name="name" required/></label>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center">회원 가입</h1>
+            <form action="/member/new" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">이름</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">이메일 주소</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                    <span id="errorEmailContainer"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">비밀번호</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                    <span id="errorPasswordContainer"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">주소</label>
+                    <input type="text" class="form-control" id="address" name="address" required>
+                </div>
+                <button type="submit" class="btn btn-primary">가입하기</button>
+            </form>
+        </div>
     </div>
+</div>
 
-    <div>
-        <label>이메일주소 : <input type="email" name="email" /></label>
-        <span id="errorEmailContainer"></span>
-    </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
-    <div>
-        <label>비밀번호 : <input type="password" name="password" required/></label>
-        <span id="errorPasswordContainer"></span>
-    </div>
-
-    <div>
-        <label>주소 : <input type="text" name="address" required/></label>
-    </div>
-
-    <input type="submit" value="제출">
-</form>
 
 <script>
     const form = document.querySelector('form');
@@ -74,7 +78,3 @@
 
     form.addEventListener('submit', signUp);
 </script>
-
-
-</body>
-</html>
