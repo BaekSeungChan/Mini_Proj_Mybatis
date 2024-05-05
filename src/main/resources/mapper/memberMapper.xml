@@ -4,6 +4,10 @@
 
 <mapper namespace="com.example.minproj2_mybatis.member.mapper.MemberMapper">
     <insert id="save" parameterType="member">
-        INSERT INTO MEMBER (name, email, password, address) VALUES (#{name}, #{email}, #{password}, #{address})
+        INSERT INTO MEMBER (name, email, password, address, role) VALUES (#{name}, #{email}, #{password}, #{address}, #{role})
     </insert>
+
+    <select id="findByEmail" resultType="member">
+        SELECT * FROM MEMBER WHERE email = #{email}
+    </select>
 </mapper>
