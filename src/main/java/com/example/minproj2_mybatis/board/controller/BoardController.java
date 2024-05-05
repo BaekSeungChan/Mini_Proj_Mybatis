@@ -100,7 +100,7 @@ public class BoardController {
 
         model.addAttribute("board", boardDTO);
 
-        return "/board/edit";
+        return "board/edit";
     }
 
     @PostMapping("/edit")

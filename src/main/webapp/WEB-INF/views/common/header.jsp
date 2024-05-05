@@ -40,7 +40,10 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/member/new">회원가입</a>
+                    <a class="nav-link" href="/member/new">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/member/logout">Logout</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>

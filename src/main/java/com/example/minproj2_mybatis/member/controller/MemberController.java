@@ -34,32 +34,32 @@ public class MemberController {
     @PostMapping("/new")
     @ResponseBody
     public ResponseEntity<?> insertMember(@Valid @RequestBody MemberDTO memberDTO, BindingResult bindingResult, Model model){
-      log.info("=========> memberFormDTO : " + memberDTO);
+        log.info("=========> memberFormDTO : " + memberDTO);
 
-      if(bindingResult.hasErrors()){
-          Map<String, String> errors = new HashMap<>();
-          bindingResult.getFieldErrors().forEach(error -> {
-              errors.put(error.getField(), error.getDefaultMessage());
-          });
+        if(bindingResult.hasErrors()){
+            Map<String, String> errors = new HashMap<>();
+            bindingResult.getFieldErrors().forEach(error -> {
+                errors.put(error.getField(), error.getDefaultMessage());
+            });
 
-          return ResponseEntity.badRequest().body(errors);
-      }
+            return ResponseEntity.badRequest().body(errors);
+        }
 
-      try {
+        try {
 
-          MemberEntity member = MemberEntity.createMember(memberDTO, passwordEncoder);
-          int successResult = memberService.save(member);
+            MemberEntity member = MemberEntity.createMember(memberDTO, passwordEncoder);
+            int successResult = memberService.save(member);
 
-          Map<String, Object> result  = new HashMap<>();
+            Map<String, Object> result  = new HashMap<>();
 
-          result.put("SUCCESS", successResult);
+            result.put("SUCCESS", successResult);
 
-          return ResponseEntity.ok(result);
+            return ResponseEntity.ok(result);
 
-      } catch (IllegalStateException e){
-          Map<String, Object> result  = new HashMap<>();
-          result.put("error", e.getMessage());
-          return ResponseEntity.badRequest().body(result);
-      }
+        } catch (IllegalStateException e){
+            Map<String, Object> result  = new HashMap<>();
+            result.put("error", e.getMessage());
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 }
