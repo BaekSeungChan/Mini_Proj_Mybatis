@@ -27,7 +27,7 @@ public class MemberService {
         Optional<MemberEntity> findMember = memberMapper.findByEmail(member.getEmail());
 
         if(findMember.isPresent()){
-            throw new IllegalStateException("이미 존재하는 회원입니다.");
+            throw new IllegalStateException("이미 존재하는 이메일입니다.");
         }
     }
 
