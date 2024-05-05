@@ -5,6 +5,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 
+<div class="empty-space"></div>
 
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
