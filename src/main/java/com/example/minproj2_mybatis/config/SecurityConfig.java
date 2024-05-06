@@ -57,19 +57,19 @@ public class SecurityConfig {
                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                 .dispatcherTypeMatchers(DispatcherType.INCLUDE).permitAll()
                 .requestMatchers("/css/**").permitAll()
-                .requestMatchers("/","/member/**", "/board/list").permitAll()
+                .requestMatchers("/","/member/**", "/board/list","/volume-rank", "/finance/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated());
 
-        http.rememberMe(Customizer.withDefaults());
+//        http.rememberMe(Customizer.withDefaults());
 
-//        http.rememberMe(httpSecurityRememberMeConfigurer -> {
-//            httpSecurityRememberMeConfigurer
-//                    .key("namechan")
-//                    .tokenValiditySeconds(60*60*24*7)
-//                    .userDetailsService(memberService)
-//                    .rememberMeCookieDomain("remember-me");
-//        });
+        http.rememberMe(httpSecurityRememberMeConfigurer -> {
+            httpSecurityRememberMeConfigurer
+                    .key("namechan")
+                    .tokenValiditySeconds(60*60*24*7)
+                    .userDetailsService(memberService)
+                    .rememberMeCookieDomain("remember-me");
+        });
 
         http.exceptionHandling(exception -> exception
                 .authenticationEntryPoint(new CustomAuthenticationEntryPoint()));

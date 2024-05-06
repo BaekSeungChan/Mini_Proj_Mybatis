@@ -27,9 +27,6 @@ public class CustomAuthentiactionSuccesHandler implements AuthenticationSuccessH
         MemberPrincipalDetails userDetails = (MemberPrincipalDetails) authentication.getPrincipal();
         MemberEntity member =  userDetails.getMember();
 
-        System.out.println("dddd" + member);
-
-
         session.setAttribute("userInfo", member.getName());
 
         response.sendRedirect("/");

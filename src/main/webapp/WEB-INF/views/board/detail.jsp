@@ -54,14 +54,14 @@
     <%--    댓글 표시 영역    --%>
     <div class="row mt-4">
         <div class="col-md-10 offset-md-1">
-            5,000 댓글이 있습니다.
+            10 댓글이 있습니다.
         </div>
     </div>
 
     <div class="row mt-4">
         <div class="col-md-10 offset-md-1">
             <div>
-                <textarea id="commentContent" class="form-control" rows="4" style="resize: none"></textarea>
+                <textarea id="commentContent" class="form-control" rows="4" style="resize: none" required></textarea>
                 <button id="comment-write-btn" onclick="commentWrite()" class="btn btn-primary w-100 mt-3">등록</button>
             </div>
         </div>
@@ -73,7 +73,7 @@
             <div class="col-md-10 offset-md-1">
                 <hr>
                 <h5 class="text-dark">${reply.writer}</h5>
-                <h6 class="text-secondary">?분 전
+                <h6 class="text-secondary">1분 전
                     <i class="ms-4 fa-regular fa-thumbs-up text-danger"></i>
                     <span class="text-danger">500</span>
                 </h6>
@@ -137,7 +137,7 @@
 
                     const timeHeader = document.createElement('h6');
                     timeHeader.classList.add('text-secondary');
-                    timeHeader.innerHTML = `?분 전
+                    timeHeader.innerHTML = `1분 전
                     <i class="ms-4 fa-regular fa-thumbs-up text-danger"></i>
                     <span class="text-danger">500</span>`;
 

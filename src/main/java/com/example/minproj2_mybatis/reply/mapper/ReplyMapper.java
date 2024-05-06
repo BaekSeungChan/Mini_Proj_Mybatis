@@ -11,4 +11,5 @@ public interface ReplyMapper {
     int save(ReplyEntity reply);
 
     List<ReplyEntity> findAll(Long boardId);
+
 }

@@ -36,9 +36,12 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/board/list">Community
+                    <a class="nav-link active" href="/board/list">커뮤니티
                         <span class="visually-hidden">(current)</span>
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/finance/list">금융소식</a>
                 </li>
                 <sec:authorize access="!isAuthenticated()">
                     <a class="nav-link" href="/member/login">Login</a>
@@ -60,8 +63,6 @@
                         </div>
                     </li>
                 </sec:authorize>
-
-                <h2>Welcome ${sessionScope.userInfo}</h2>
             </ul>
         </div>
     </div>
