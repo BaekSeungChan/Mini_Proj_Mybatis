@@ -57,7 +57,7 @@ public class SecurityConfig {
                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                 .dispatcherTypeMatchers(DispatcherType.INCLUDE).permitAll()
                 .requestMatchers("/css/**").permitAll()
-                .requestMatchers("/","/member/**", "/board/list","/volume-rank", "/finance/**").permitAll()
+                .requestMatchers("/","/member/**", "/board/list","/volume-rank", "/finance/**","/gpt/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated());
 
