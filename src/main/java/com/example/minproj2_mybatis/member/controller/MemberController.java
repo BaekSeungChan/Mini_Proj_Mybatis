@@ -3,11 +3,18 @@ package com.example.minproj2_mybatis.member.controller;
 import com.example.minproj2_mybatis.member.dto.MemberDTO;
 import com.example.minproj2_mybatis.member.entity.MemberEntity;
 import com.example.minproj2_mybatis.member.service.MemberService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -68,9 +75,21 @@ public class MemberController {
         return "member/loginForm";
     }
 
+
     @GetMapping("/member/login/error")
     public String loginError(Model model){
         model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호가 일치하지 않습니다.");
         return "member/loginForm";
     }
+
+//    @GetMapping("/member/logout")
+//    public String logout(HttpServletRequest request, HttpServletResponse response){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if(authentication != null){
+//            new SecurityContextLogoutHandler().logout(request, response, authentication);
+//        }
+//
+//        return "redirect:/"; // 홈페이지로 리다이렉션
+//    }
+
 }

@@ -1,5 +1,6 @@
 package com.example.minproj2_mybatis.member.service;
 
+import com.example.minproj2_mybatis.config.MemberPrincipalDetails;
 import com.example.minproj2_mybatis.member.dto.MemberDTO;
 import com.example.minproj2_mybatis.member.entity.MemberEntity;
 import com.example.minproj2_mybatis.member.mapper.MemberMapper;
@@ -26,6 +27,10 @@ public class MemberService implements UserDetailsService {
         return memberMapper.save(memberDTO);
     }
 
+    public MemberDTO findMember(String email){
+        return null;
+    }
+
 
     private void validateDuplicationMember(MemberEntity member){
         Optional<MemberEntity> findMember = memberMapper.findByEmail(member.getEmail());
@@ -40,11 +45,21 @@ public class MemberService implements UserDetailsService {
         MemberEntity member = memberMapper.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("해당 사용자가 없습니다."));
 
-        return User.builder()
-                .username(member.getName())
-                .password(member.getPassword())
-                .roles(member.getRole().toString())
-                .build();
+        System.out.println(member);
+
+        if(member == null){
+            throw new UsernameNotFoundException(email + "을 찾을 수 없습니다.");
+        }
+
+        if(!"Y".equals(member.getIsUsed())){
+            throw new UsernameNotFoundException("사용할 수 없는 계정입니다.");
+        }
+
+        if(!"N".equals(member.getIsDel())){
+            throw new UsernameNotFoundException("삭제된 계정입니다.");
+        }
+
+        return new MemberPrincipalDetails(member);
     }
 
 }

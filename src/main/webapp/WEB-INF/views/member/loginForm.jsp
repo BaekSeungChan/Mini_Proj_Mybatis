@@ -20,8 +20,13 @@
                 <c:if test="${not empty loginErrorMsg}">
                     <script>alert("<c:out value='${loginErrorMsg}'/>")</script>
                 </c:if>
-                <button type="submit" class="btn btn-primary">로그인</button>
-                <a href="/member/new" class="btn btn-secondary">회원가입</a>
+                <div>
+                    <label>자동 로그인 <input type="checkbox" name="remember-me" id="rememberMe"></label>
+                </div>
+                <div style="margin-top: 10px">
+                    <button type="submit" class="btn btn-primary">로그인</button>
+                    <a href="/member/new" class="btn btn-secondary">회원가입</a>
+                </div>
             </form>
         </div>
     </div>

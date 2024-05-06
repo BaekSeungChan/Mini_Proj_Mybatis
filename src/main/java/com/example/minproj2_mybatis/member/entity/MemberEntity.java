@@ -25,6 +25,10 @@ public class MemberEntity {
 
     private Role role;
 
+    private String isUsed;
+
+    private String isDel;
+
     public static MemberEntity createMember(MemberDTO memberDTO, PasswordEncoder passwordEncoder){
         return MemberEntity.builder()
                 .name(memberDTO.getName())

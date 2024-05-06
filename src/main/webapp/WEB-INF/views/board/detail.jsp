@@ -60,10 +60,10 @@
 
     <div class="row mt-4">
         <div class="col-md-10 offset-md-1">
-            <form action="#" method="post">
-                <textarea name="?" class="form-control" rows="4" style="resize: none"></textarea>
-                <button type="submit" class="btn btn-primary w-100 mt-3">등록</button>
-            </form>
+            <div>
+                <textarea id="commentContent" class="form-control" rows="4" style="resize: none"></textarea>
+                <button id="comment-write-btn" onclick="commentWrite()" class="btn btn-primary w-100 mt-3">등록</button>
+            </div>
         </div>
     </div>
 
@@ -105,6 +105,28 @@
     const deleteFn = () => {
         location.href = "/board/delete?id=${board.id}"
     }
+
+    const commentWrite = () => {
+        const writer = '${sessionScope.userInfo}';
+        const content = document.getElementById("commentContent").value;
+        const boardId = '${board.id}';
+
+        const  param = {
+            writer : writer,
+            content : content,
+            boardId : boardId
+        }
+
+        fetch("/reply/save", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(param)
+        })
+    }
+
+
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
