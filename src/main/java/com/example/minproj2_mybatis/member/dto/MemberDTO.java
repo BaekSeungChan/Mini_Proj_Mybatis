@@ -1,6 +1,7 @@
 package com.example.minproj2_mybatis.member.dto;
 
 
+import com.example.minproj2_mybatis.member.entity.MemberEntity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -31,5 +32,17 @@ public class MemberDTO {
 
     @NotEmpty(message = "주소는 필수입력 값입니다.")
     private String address;
+
+    private Enum role;
+
+    public static MemberDTO toDTO(MemberEntity member){
+        return MemberDTO.builder()
+                .id(member.getId())
+                .name(member.getName())
+                .email(member.getEmail())
+                .address(member.getAddress())
+                .role(member.getRole())
+                .build();
+    }
 
 }

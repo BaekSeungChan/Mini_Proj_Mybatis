@@ -10,4 +10,8 @@
     <select id="findByEmail" resultType="member">
         SELECT * FROM MEMBER WHERE email = #{email}
     </select>
+
+    <select id="findAll" resultType="member">
+        SELECT * FROM MEMBER ORDER BY id desc
+    </select>
 </mapper>

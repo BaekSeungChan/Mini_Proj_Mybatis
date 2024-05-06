@@ -36,3 +36,18 @@ mybatis:
 
 
 
+appkey: PSz4sAmyn2ya3D0cnr5SEqrcr9782EGz3J2X
+appsecret: t/GjDtBann2Ap5cpaFu/M2jqcXX81pyrTLCsmi+xSKxcc7U4qFJImW+lcsCLwKvBRJ6or7OVFEzzu3GCB1yq9ydy6EgZZHYfTSKk4zVof4Qx5RhPcnEdf5qfKBUazJ/cA4E5nr76wZk0xDmtgVmYia5pMrCPhteE39XxhPWUALwgg5ZyMDY=
+access_token : eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0b2tlbiIsImF1ZCI6ImVmZmVjNDY3LWQzOGYtNDZmZi1iNWQwLWFlNDk4NzMyZTZhMCIsInByZHRfY2QiOiIiLCJpc3MiOiJ1bm9ndyIsImV4cCI6MTcxNTA4MTM1NSwiaWF0IjoxNzE0OTk0OTU1LCJqdGkiOiJQU3o0c0FteW4yeWEzRDBjbnI1U0VxcmNyOTc4MkVHejNKMlgifQ.lbBysTsYLPWeeeV7NlzWJeF5TmiB6zQQkYrsLtwbKxl_hAF7ESkGriP6WFBey4aCCwwKhvYkAm4veOghSkmGtA
+
+gpt:
+  model: gpt-3.5-turbo
+  api:
+    key: sk-proj-K1Uy9YnlECGlQpfbsNG8T3BlbkFJb509P4rSyaLjtGcJJPJ0
+    url: https://api.openai.com/v1/chat/completions
+
+
+#  677982bdcd6549329d32edfcb90766bd
+
+#https://newsapi:
+#  org/v2/top-headlines?country=kr&apiKey=677982bdcd6549329d32edfcb90766bd:
