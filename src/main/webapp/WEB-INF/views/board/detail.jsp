@@ -67,29 +67,20 @@
         </div>
     </div>
 
-    <div class="row mt-4">
-        <div class="col-md-10 offset-md-1">
-            <hr>
-            <h5 class="text-dark">작성자</h5>
-            <h6 class="text-secondary">?분 전
-                <i class="ms-4 fa-regular fa-thumbs-up text-danger"></i>
-                <span class="text-danger">500</span>
-            </h6>
-            <pre class="mt-3" style="min-height: 75px">테스트 댓글 영역</pre>
-        </div>
-    </div>
 
-    <div class="row mt-4">
-        <div class="col-md-10 offset-md-1">
-            <hr>
-            <h5 class="text-dark">작성자</h5>
-            <h6 class="text-secondary">?분 전
-                <i class="ms-4 fa-regular fa-thumbs-up text-danger"></i>
-                <span class="text-danger">500</span>
-            </h6>
-            <pre class="mt-3" style="min-height: 75px">테스트 댓글 영역</pre>
+    <c:forEach var="reply" items="${replyList}">
+        <div class="row mt-4">
+            <div class="col-md-10 offset-md-1">
+                <hr>
+                <h5 class="text-dark">${reply.writer}</h5>
+                <h6 class="text-secondary">?분 전
+                    <i class="ms-4 fa-regular fa-thumbs-up text-danger"></i>
+                    <span class="text-danger">500</span>
+                </h6>
+                <pre class="mt-3" style="min-height: 75px">${reply.content}</pre>
+            </div>
         </div>
-    </div>
+    </c:forEach>
 </div>
 
 
@@ -111,11 +102,11 @@
         const content = document.getElementById("commentContent").value;
         const boardId = '${board.id}';
 
-        const  param = {
-            writer : writer,
-            content : content,
-            boardId : boardId
-        }
+        const param = {
+            writer: writer,
+            content: content,
+            boardId: boardId
+        };
 
         fetch("/reply/save", {
             method: 'POST',
@@ -124,7 +115,53 @@
             },
             body: JSON.stringify(param)
         })
-    }
+            .then(response => response.json())
+            .then(json => {
+                // 받아온 댓글 목록을 화면에 추가
+                const replyList = json;
+                const container = document.querySelector('.container-fluid');
+
+                replyList.forEach(reply => {
+                    const newRow = document.createElement('div');
+                    newRow.classList.add('row', 'mt-4');
+
+                    const newCol = document.createElement('div');
+                    newCol.classList.add('col-md-10', 'offset-md-1');
+
+                    const newHr = document.createElement('hr');
+                    newCol.appendChild(newHr);
+
+                    const writerHeader = document.createElement('h5');
+                    writerHeader.classList.add('text-dark');
+                    writerHeader.textContent = reply.writer;
+
+                    const timeHeader = document.createElement('h6');
+                    timeHeader.classList.add('text-secondary');
+                    timeHeader.innerHTML = `?분 전
+                    <i class="ms-4 fa-regular fa-thumbs-up text-danger"></i>
+                    <span class="text-danger">500</span>`;
+
+                    const contentPre = document.createElement('pre');
+                    contentPre.classList.add('mt-3');
+                    contentPre.style.minHeight = '75px';
+                    contentPre.textContent = reply.content;
+
+                    newCol.appendChild(writerHeader);
+                    newCol.appendChild(timeHeader);
+                    newCol.appendChild(contentPre);
+                    newRow.appendChild(newCol);
+                    container.appendChild(newRow);
+                });
+
+                // 댓글 등록 후 textarea 초기화
+                document.getElementById("commentContent").value = "";
+
+                location.href = "/board/detail?id=${board.id}";
+            })
+            .catch(error => console.error('Error:', error));
+    };
+
+
 
 
 </script>

@@ -4,6 +4,8 @@ import com.example.minproj2_mybatis.board.dto.BoardDTO;
 import com.example.minproj2_mybatis.board.dto.PageDTO;
 import com.example.minproj2_mybatis.board.entity.BoardEntity;
 import com.example.minproj2_mybatis.board.service.BoardService;
+import com.example.minproj2_mybatis.reply.dto.ReplyDTO;
+import com.example.minproj2_mybatis.reply.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
@@ -23,6 +25,9 @@ import java.util.Map;
 public class BoardController {
 
     private final BoardService boardService;
+
+    private final ReplyService replyService;
+
     @GetMapping("/list")
     public String list(
             @RequestParam(name = "id", required = false) Long id,
@@ -54,11 +59,17 @@ public class BoardController {
     
 
     @GetMapping("/detail")
-    public String detail(@RequestParam("id") Long id, Model model){
+    public String detail(@RequestParam("id") Long id, Model model,
+                         @RequestParam(value = "page", required = false, defaultValue = "1")int page){
 
         BoardDTO boardDTO = boardService.findById(id);
 
         model.addAttribute("board", boardDTO);
+        model.addAttribute("page", page);
+
+        List<ReplyDTO> replyDTOList = replyService.findAll(id);
+
+        model.addAttribute("replyList", replyDTOList);
 
         return "board/detail";
     }

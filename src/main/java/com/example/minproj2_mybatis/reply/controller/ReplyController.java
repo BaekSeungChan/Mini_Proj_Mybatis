@@ -3,7 +3,7 @@ package com.example.minproj2_mybatis.reply.controller;
 import com.example.minproj2_mybatis.reply.dto.ReplyDTO;
 import com.example.minproj2_mybatis.reply.service.ReplyService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +22,9 @@ public class ReplyController {
 
         replyService.save(replyDTO);
 
-        return null;
+        List<ReplyDTO> replyDTOList = replyService.findAll(replyDTO.getBoardId());
+
+        return replyDTOList;
     }
+
 }

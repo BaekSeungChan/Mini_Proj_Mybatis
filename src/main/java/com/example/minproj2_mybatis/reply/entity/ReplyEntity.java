@@ -11,23 +11,24 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 public class ReplyEntity {
 
     private Long id;
 
-    private String writer;
+    private String replyWriter;
 
-    private String content;
+    private String replyContents;
 
     private Long boardId;
 
-    private Timestamp writeTime;
+    private Timestamp replyCreatedTime;
 
     public static ReplyEntity toEntity(ReplyDTO replyDTO){
         return ReplyEntity.builder()
                 .boardId(replyDTO.getBoardId())
-                .writer(replyDTO.getWriter())
-                .content(replyDTO.getContent())
+                .replyWriter(replyDTO.getWriter())
+                .replyContents(replyDTO.getContent())
                 .build();
 
     }

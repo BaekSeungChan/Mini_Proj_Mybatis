@@ -4,7 +4,11 @@
 
 <mapper namespace="com.example.minproj2_mybatis.reply.mapper.ReplyMapper">
     <insert id="save" parameterType="reply">
-        INSERT INTO reply_table (replyWiter, replyContents, boardId)
-        VALUES (#{writer}, #{content}, #{boardId})
+        INSERT INTO reply_table (replyWriter, replyContents, boardId)
+        VALUES (#{replyWriter}, #{replyContents}, #{boardId})
     </insert>
+
+    <select id="findAll" parameterType="Long" resultType="reply">
+        SELECT * FROM  reply_table WHERE boardId = #{boardId} ORDER BY id desc
+    </select>
 </mapper>
