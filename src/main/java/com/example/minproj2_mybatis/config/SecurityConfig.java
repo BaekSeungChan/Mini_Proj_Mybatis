@@ -57,8 +57,8 @@ public class SecurityConfig {
                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                 .dispatcherTypeMatchers(DispatcherType.INCLUDE).permitAll()
                 .requestMatchers("/css/**").permitAll()
-                .requestMatchers("/","/member/**", "/board/list","/volume-rank", "/finance/**","/gpt/**", "admin/**").permitAll()
-                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/","/member/**", "/board/list","/volume-rank", "/finance/**","/gpt/**", "/admin/**").permitAll()
+                .requestMatchers("/admin/delete/**").hasRole("ADMIN")
                 .anyRequest().authenticated());
 
 //        http.rememberMe(Customizer.withDefaults());

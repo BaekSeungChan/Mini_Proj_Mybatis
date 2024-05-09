@@ -1,12 +1,12 @@
 package com.example.minproj2_mybatis.admin;
 
 import com.example.minproj2_mybatis.member.dto.MemberDTO;
-import com.example.minproj2_mybatis.member.entity.MemberEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +28,17 @@ public class AdminController {
         model.addAttribute("member", memberEntityList);
 
         return "admin/list";
+    }
+
+    @GetMapping("/delete")
+    public ResponseEntity<String> deleteMember(@RequestParam("id") Long id) {
+
+        System.out.println("id : " + id);
+        try {
+            adminService.delete(id);
+            return ResponseEntity.ok("삭제되었습니다.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("삭제를 실패했습니다.");
+        }
     }
 }

@@ -14,4 +14,6 @@ public interface MemberMapper {
     Optional<MemberEntity> findByEmail(String email);
 
     List<MemberEntity> findAll();
+
+    void delete(Long id);
 }

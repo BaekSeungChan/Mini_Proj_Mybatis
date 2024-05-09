@@ -25,7 +25,7 @@
                 <td>${member.email}</td>
                 <td>${member.role}</td>
                 <td>
-                    <button class="btn btn-danger btn-sm" onclick="deleteMember(${member.id})">삭제</button>
+                    <button class="btn btn-info btn-sm" onclick="deleteMember(${member.id})">탈퇴</button>
                 </td>
             </tr>
         </c:forEach>
@@ -37,6 +37,21 @@
 
 <script>
     function deleteMember(id) {
-        window.location.href = "/admin/delete?id=" + id;
+        if (confirm("정말로 삭제하시겠습니까?")) {
+            fetch(`/admin/delete?id=${id}`, {
+                method: 'GET'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("삭제되었습니다.");
+                        location.reload();
+                    } else {
+                        alert("삭제를 실패했습니다.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
     }
 </script>

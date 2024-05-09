@@ -23,6 +23,9 @@ public class AdminService {
 
         return memberList;
 
+    }
 
+    public void delete(Long id){
+        memberMapper.delete(id);
     }
 }

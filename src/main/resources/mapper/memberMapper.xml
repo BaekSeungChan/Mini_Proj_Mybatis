@@ -14,4 +14,8 @@
     <select id="findAll" resultType="member">
         SELECT * FROM MEMBER ORDER BY id desc
     </select>
+
+    <delete id="delete" parameterType="Long">
+        DELETE FROM MEMBER WHERE id = #{id}
+    </delete>
 </mapper>

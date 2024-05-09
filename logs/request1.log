@@ -1,0 +1,148 @@
+#logback.classic pattern: [REQUEST1] [REQUEST1] [%-5level] %d{yyyy-MM-dd HH:mm:ss} [%thread] [%logger{40}:%line] - %msg%n
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:48 [restartedMain] [c.e.m.MinProj2MybatisApplication:50] - Starting MinProj2MybatisApplication using Java 17.0.9 with PID 1911 (/Users/baegseungchan/Desktop/BackEnd/MinProj2_Mybatis/out/production/classes started by baegseungchan in /Users/baegseungchan/Desktop/BackEnd/MinProj2_Mybatis)
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:48 [restartedMain] [c.e.m.MinProj2MybatisApplication:660] - The following 1 profile is active: "prod"
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:48 [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:48 [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:48 [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer:109] - Tomcat initialized with port 8888 (http)
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:48 [restartedMain] [o.apache.catalina.core.StandardService:173] - Starting service [Tomcat]
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:48 [restartedMain] [org.apache.catalina.core.StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.20]
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:49 [restartedMain] [org.apache.jasper.servlet.TldScanner:173] - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:49 [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]:173] - Initializing Spring embedded WebApplicationContext
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:49 [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 915 ms
+[REQUEST1] [REQUEST1] [ERROR] 2024-05-09 21:59:49 [restartedMain] [i.n.r.d.DnsServerAddressStreamProviders:79] - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:49 [restartedMain] [o.s.s.web.DefaultSecurityFilterChain:54] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6718d251, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5aa16dca, org.springframework.security.web.context.SecurityContextHolderFilter@1ea09b6f, org.springframework.security.web.header.HeaderWriterFilter@1badef75, org.springframework.web.filter.CorsFilter@3b0a74ce, org.springframework.security.web.authentication.logout.LogoutFilter@4ba6bceb, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1c2cf649, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@31dd3445, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@58d7ad0c, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@318a1808, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1b1336ab, org.springframework.security.web.access.ExceptionTranslationFilter@636c4963, org.springframework.security.web.access.intercept.AuthorizationFilter@3ef50426]
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:49 [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:49 [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer:241] - Tomcat started on port 8888 (http) with context path ''
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:49 [restartedMain] [c.e.m.MinProj2MybatisApplication:56] - Started MinProj2MybatisApplication in 2.07 seconds (process running for 2.54)
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:50 [http-nio-8888-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:50 [http-nio-8888-exec-1] [o.s.web.servlet.DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:50 [http-nio-8888-exec-1] [o.s.web.servlet.DispatcherServlet:554] - Completed initialization in 1 ms
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:50 [http-nio-8888-exec-1] [com.zaxxer.hikari.HikariDataSource:110] - HikariPool-1 - Starting...
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:50 [http-nio-8888-exec-1] [com.zaxxer.hikari.pool.HikariPool:565] - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@673b0029
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:50 [http-nio-8888-exec-1] [com.zaxxer.hikari.HikariDataSource:123] - HikariPool-1 - Start completed.
+[REQUEST1] [REQUEST1] [ERROR] 2024-05-09 21:59:53 [http-nio-8888-exec-8] [o.a.c.c.C.[.[.[/].[dispatcherServlet]:175] - Servlet.service() for servlet [dispatcherServlet] threw exception
+org.springframework.web.reactive.function.client.WebClientResponseException$InternalServerError: 500 Internal Server Error from GET https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/volume-rank
+	at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:318)
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ 500 INTERNAL_SERVER_ERROR from GET https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/volume-rank [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:318)
+		at org.springframework.web.reactive.function.client.DefaultClientResponse.lambda$createException$1(DefaultClientResponse.java:214)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:106)
+		at reactor.core.publisher.FluxOnErrorReturn$ReturnSubscriber.onNext(FluxOnErrorReturn.java:162)
+		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:122)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onNext(FluxMapFuseable.java:299)
+		at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onNext(FluxFilterFuseable.java:337)
+		at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2097)
+		at reactor.core.publisher.MonoCollect$CollectSubscriber.onComplete(MonoCollect.java:145)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:260)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:415)
+		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:446)
+		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:500)
+		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:793)
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:114)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436)
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346)
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318)
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.handler.ssl.SslHandler.unwrap(SslHandler.java:1475)
+		at io.netty.handler.ssl.SslHandler.decodeJdkCompatible(SslHandler.java:1338)
+		at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:1387)
+		at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:530)
+		at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:469)
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:290)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:840)
+[REQUEST1] [REQUEST1] [ERROR] 2024-05-09 21:59:53 [http-nio-8888-exec-8] [o.a.c.c.C.[.[.[/].[dispatcherServlet]:175] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.reactive.function.client.WebClientResponseException$InternalServerError: 500 Internal Server Error from GET https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/volume-rank] with root cause
+org.springframework.web.reactive.function.client.WebClientResponseException$InternalServerError: 500 Internal Server Error from GET https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/volume-rank
+	at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:318)
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ 500 INTERNAL_SERVER_ERROR from GET https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/volume-rank [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:318)
+		at org.springframework.web.reactive.function.client.DefaultClientResponse.lambda$createException$1(DefaultClientResponse.java:214)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:106)
+		at reactor.core.publisher.FluxOnErrorReturn$ReturnSubscriber.onNext(FluxOnErrorReturn.java:162)
+		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:122)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onNext(FluxMapFuseable.java:299)
+		at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onNext(FluxFilterFuseable.java:337)
+		at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2097)
+		at reactor.core.publisher.MonoCollect$CollectSubscriber.onComplete(MonoCollect.java:145)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:260)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:415)
+		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:446)
+		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:500)
+		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:793)
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:114)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436)
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346)
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318)
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.handler.ssl.SslHandler.unwrap(SslHandler.java:1475)
+		at io.netty.handler.ssl.SslHandler.decodeJdkCompatible(SslHandler.java:1338)
+		at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:1387)
+		at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:530)
+		at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:469)
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:290)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:840)
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:56 [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+[REQUEST1] [REQUEST1] [INFO ] 2024-05-09 21:59:56 [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource:352] - HikariPool-1 - Shutdown completed.
