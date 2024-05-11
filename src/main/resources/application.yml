@@ -16,6 +16,7 @@ spring:
     static-path-pattern: /resources/**
 
 
+
   #database
   datasource:
     url: "jdbc:mariadb://localhost:3306/mini_proj2"
@@ -28,6 +29,9 @@ spring:
       name: test@test.com
       password: 1234
 
+  profiles:
+    include: API-KEY
+
 
 
 mybatis:
@@ -35,4 +39,8 @@ mybatis:
   mapper-locations: classpath:mapper/**/*.xml  # Mapper ?? ??
 
 
-
+gpt:
+  model: gpt-3.5-turbo
+  api:
+    key: ${gpt_api_key}
+    url: https://api.openai.com/v1/chat/completions
