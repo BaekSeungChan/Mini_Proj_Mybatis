@@ -5,7 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-!**/main/resources/application-API-KEY.properties
+**/main/resources/application-API-KEY.properties
 
 ### STS ###
 .apt_generated
