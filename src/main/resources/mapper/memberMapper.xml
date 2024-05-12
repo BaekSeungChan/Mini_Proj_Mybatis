@@ -18,4 +18,8 @@
     <delete id="delete" parameterType="Long">
         DELETE FROM MEMBER WHERE id = #{id}
     </delete>
+
+    <select id="existsfindByEmail" resultType="boolean">
+        SELECT COUNT(*) > 0 FROM MEMBER WHERE email = #{email}
+    </select>
 </mapper>
