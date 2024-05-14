@@ -1,5 +1,6 @@
 package com.example.minproj2_mybatis.config;
 
+import com.example.minproj2_mybatis.jwt.JWTUtil;
 import com.example.minproj2_mybatis.jwt.LoginFilter;
 import com.example.minproj2_mybatis.member.service.MemberService;
 import jakarta.servlet.DispatcherType;
@@ -26,6 +27,8 @@ import java.nio.charset.StandardCharsets;
 public class SecurityConfig {
 
     private final AuthenticationConfiguration authenticationConfiguration;
+
+    private final JWTUtil jwtUtil;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception{
@@ -73,7 +76,7 @@ public class SecurityConfig {
                 .anyRequest().authenticated());
 
         http
-                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration)), UsernamePasswordAuthenticationFilter.class);
+                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
 
         http
