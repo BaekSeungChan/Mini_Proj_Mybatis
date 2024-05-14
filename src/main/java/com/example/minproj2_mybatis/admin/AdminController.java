@@ -1,6 +1,5 @@
 package com.example.minproj2_mybatis.admin;
 
-import com.example.minproj2_mybatis.member.dto.MemberDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,18 +16,18 @@ public class AdminController {
 
     private final AdminService adminService;
 
-    @GetMapping("/list")
-    public String list(Model model){
-        List<MemberDTO> memberEntityList = adminService.findAll();
-
-        for(var result : memberEntityList){
-            System.out.println("ddd " + result);
-        }
-
-        model.addAttribute("member", memberEntityList);
-
-        return "admin/list";
-    }
+//    @GetMapping("/list")
+//    public String list(Model model){
+//        List<MemberDTO> memberEntityList = adminService.findAll();
+//
+//        for(var result : memberEntityList){
+//            System.out.println("ddd " + result);
+//        }
+//
+//        model.addAttribute("member", memberEntityList);
+//
+//        return "admin/list";
+//    }
 
     @GetMapping("/delete")
     public ResponseEntity<String> deleteMember(@RequestParam("id") Long id) {

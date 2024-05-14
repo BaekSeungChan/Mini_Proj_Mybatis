@@ -1,6 +1,5 @@
 package com.example.minproj2_mybatis.member.service;
 
-import com.example.minproj2_mybatis.config.MemberPrincipalDetails;
 import com.example.minproj2_mybatis.member.dto.MemberDTO;
 import com.example.minproj2_mybatis.member.entity.MemberEntity;
 import com.example.minproj2_mybatis.member.mapper.MemberMapper;
@@ -59,7 +58,7 @@ public class MemberService implements UserDetailsService {
             throw new UsernameNotFoundException("삭제된 계정입니다.");
         }
 
-        return new MemberPrincipalDetails(member);
+        return null;
     }
 
 }

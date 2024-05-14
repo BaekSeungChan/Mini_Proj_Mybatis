@@ -1,6 +1,6 @@
 package com.example.minproj2_mybatis.member.service;
 
-import com.example.minproj2_mybatis.member.dto.MemberDTO;
+import com.example.minproj2_mybatis.member.dto.normal.requets.MemberDTO;
 import com.example.minproj2_mybatis.member.entity.MemberEntity;
 
 import org.junit.jupiter.api.Assertions;
@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
