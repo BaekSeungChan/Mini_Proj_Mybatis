@@ -18,8 +18,6 @@ public class MemberEntity {
 
     private String password;
 
-    private String passwordCheck;
-
     private String address;
 
     private Role role;
