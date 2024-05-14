@@ -1,6 +1,6 @@
 package com.example.minproj2_mybatis.member.service;
 
-import com.example.minproj2_mybatis.member.dto.normal.requets.MemberDTO;
+import com.example.minproj2_mybatis.member.dto.MemberDTO;
 import com.example.minproj2_mybatis.member.entity.MemberEntity;
 
 import org.junit.jupiter.api.Assertions;
