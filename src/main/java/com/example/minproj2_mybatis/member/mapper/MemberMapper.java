@@ -11,7 +11,7 @@ public interface MemberMapper {
 
     int save(MemberEntity member);
 
-    Optional<MemberEntity> findByEmail(String email);
+    Optional<MemberEntity> findByUsername(String username);
 
     List<MemberEntity> findAll();
 

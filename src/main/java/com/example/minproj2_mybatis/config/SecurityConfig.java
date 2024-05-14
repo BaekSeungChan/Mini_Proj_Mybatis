@@ -45,12 +45,13 @@ public class SecurityConfig {
                 .formLogin((auth) -> auth.disable())
                 .httpBasic((auth) -> auth.disable());
 
-//        http.formLogin(form -> form
-//                .loginPage("/member/login")  // 사용자 정의 로그인 페이지 경로 설정
+//        http
+//                .formLogin(form -> form
+//                .loginPage("/login")  // 사용자 정의 로그인 페이지 경로 설정
 ////                .successHandler(customAuthentiactionSuccesHandler)
 ////                .defaultSuccessUrl("/board/list")  // 로그인 성공 시 리다이렉트 될 기본 URL 설정
 //                .failureUrl("/member/login/error")  // 로그인 실패 시 리다이렉트 될 URL 설정
-//                .usernameParameter("email")  // 로그인 폼에서 사용할 사용자 이름 파라미터 이름 설정
+//                .usernameParameter("username")  // 로그인 폼에서 사용할 사용자 이름 파라미터 이름 설정
 //                .passwordParameter("password")  // 로그인 폼에서 사용할 비밀번호 파라미터 이름 설정
 //                .permitAll());  // 모든 사용자가 접근할 수 있도록 설정
 
@@ -82,8 +83,4 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
 }

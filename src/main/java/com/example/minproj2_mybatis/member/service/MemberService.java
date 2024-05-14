@@ -1,5 +1,6 @@
 package com.example.minproj2_mybatis.member.service;
 
+import com.example.minproj2_mybatis.member.dto.CustomMemberDetailsService;
 import com.example.minproj2_mybatis.member.dto.MemberDTO;
 import com.example.minproj2_mybatis.member.entity.MemberEntity;
 import com.example.minproj2_mybatis.member.mapper.MemberMapper;
@@ -26,13 +27,9 @@ public class MemberService implements UserDetailsService {
         return memberMapper.save(memberDTO);
     }
 
-    public MemberDTO findMember(String email){
-        return null;
-    }
-
 
     private void validateDuplicationMember(MemberEntity member){
-        Optional<MemberEntity> findMember = memberMapper.findByEmail(member.getEmail());
+        Optional<MemberEntity> findMember = memberMapper.findByUsername(member.getName());
 
         if(findMember.isPresent()){
             throw new IllegalStateException("이미 존재하는 이메일입니다.");
@@ -40,25 +37,16 @@ public class MemberService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        MemberEntity member = memberMapper.findByEmail(email)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        MemberEntity member = memberMapper.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("해당 사용자가 없습니다."));
 
-        System.out.println(member);
+        System.out.println("member : " + member);
 
-        if(member == null){
-            throw new UsernameNotFoundException(email + "을 찾을 수 없습니다.");
-        }
-
-        if(!"Y".equals(member.getIsUsed())){
-            throw new UsernameNotFoundException("사용할 수 없는 계정입니다.");
-        }
-
-        if(!"N".equals(member.getIsDel())){
-            throw new UsernameNotFoundException("삭제된 계정입니다.");
+        if(member != null){
+            return  new CustomMemberDetailsService(member);
         }
 
         return null;
     }
-
 }

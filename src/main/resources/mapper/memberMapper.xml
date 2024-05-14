@@ -7,8 +7,8 @@
         INSERT INTO MEMBER (name, email, password, address, role) VALUES (#{name}, #{email}, #{password}, #{address}, #{role})
     </insert>
 
-    <select id="findByEmail" resultType="member">
-        SELECT * FROM MEMBER WHERE email = #{email}
+    <select id="findByUsername" resultType="member">
+        SELECT * FROM MEMBER WHERE name = #{name}
     </select>
 
     <select id="findAll" resultType="member">
