@@ -30,6 +30,7 @@
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">KOSA</a>
+        <h1>${role}</h1>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,10 +44,17 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/finance/list">금융소식</a>
                 </li>
-                <sec:authorize access="!isAuthenticated()">
-                    <a class="nav-link" href="/member/login">Login</a>
+                <sec:authorize access="isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/member/logout">Logout</a>
+                    </li>
                 </sec:authorize>
-                <sec:authorize access="hasAnyAuthority('ADMIN')">
+                <sec:authorize access="!isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/member/login">Login</a>
+                    </li>
+                </sec:authorize>
+                <c:if test="${role == 'ADMIN'}">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">관리자</a>
                         <div class="dropdown-menu">
@@ -54,13 +62,7 @@
                             <a class="dropdown-item" href="#">Community List</a>
                         </div>
                     </li>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/member/logout">Logout</a>
-                    </li>
-                </sec:authorize>
-
+                </c:if>
             </ul>
         </div>
     </div>

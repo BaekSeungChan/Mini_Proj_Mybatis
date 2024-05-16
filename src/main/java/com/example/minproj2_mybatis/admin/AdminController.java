@@ -29,6 +29,12 @@ public class AdminController {
 //        return "admin/list";
 //    }
 
+    @GetMapping("/")
+    @ResponseBody
+    public String admin(){
+        return "hello admin";
+    }
+
     @GetMapping("/delete")
     public ResponseEntity<String> deleteMember(@RequestParam("id") Long id) {
 

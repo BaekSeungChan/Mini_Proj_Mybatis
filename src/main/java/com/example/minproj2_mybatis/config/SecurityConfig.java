@@ -1,5 +1,6 @@
 package com.example.minproj2_mybatis.config;
 
+import com.example.minproj2_mybatis.jwt.JWTFilter;
 import com.example.minproj2_mybatis.jwt.JWTUtil;
 import com.example.minproj2_mybatis.jwt.LoginFilter;
 import com.example.minproj2_mybatis.member.service.MemberService;
@@ -48,36 +49,28 @@ public class SecurityConfig {
                 .formLogin((auth) -> auth.disable())
                 .httpBasic((auth) -> auth.disable());
 
-//        http
-//                .formLogin(form -> form
-//                .loginPage("/login")  // 사용자 정의 로그인 페이지 경로 설정
-////                .successHandler(customAuthentiactionSuccesHandler)
-////                .defaultSuccessUrl("/board/list")  // 로그인 성공 시 리다이렉트 될 기본 URL 설정
-//                .failureUrl("/member/login/error")  // 로그인 실패 시 리다이렉트 될 URL 설정
-//                .usernameParameter("username")  // 로그인 폼에서 사용할 사용자 이름 파라미터 이름 설정
-//                .passwordParameter("password")  // 로그인 폼에서 사용할 비밀번호 파라미터 이름 설정
-//                .permitAll());  // 모든 사용자가 접근할 수 있도록 설정
+
 
         http.logout(logoutConfig ->
                         logoutConfig
                                 .logoutUrl("/member/logout")
                                 .logoutSuccessUrl("/")
                                 .deleteCookies("JSESSIONID")
-//                        .logoutSuccessHandler().
-//                        .addLogoutHandler()
         );
 
         http.authorizeHttpRequests(request -> request
                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                 .dispatcherTypeMatchers(DispatcherType.INCLUDE).permitAll()
                 .requestMatchers("/css/**").permitAll()
-                .requestMatchers("/","/member/**", "/board/list","/volume-rank", "/finance/**","/gpt/**", "/admin/**").permitAll()
-                .requestMatchers("/admin/delete/**").hasRole("ADMIN")
+                .requestMatchers("/","/member/**", "/board/list","/volume-rank", "/finance/**","/gpt/**", "/admin/**","/auth/**").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated());
 
         http
-                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
 
+        http
+                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil, "/auth/login"), UsernamePasswordAuthenticationFilter.class);
 
         http
                 .sessionManagement((session) -> session

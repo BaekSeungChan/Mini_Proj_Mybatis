@@ -1,6 +1,7 @@
 package com.example.minproj2_mybatis.member.controller;
 
 
+import com.example.minproj2_mybatis.member.dto.CustomMemberDetailsService;
 import com.example.minproj2_mybatis.member.dto.MemberDTO;
 import com.example.minproj2_mybatis.member.entity.MemberEntity;
 import com.example.minproj2_mybatis.member.service.MemberService;
@@ -8,6 +9,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,6 +65,14 @@ public class MemberController {
             return ResponseEntity.badRequest().body(result);
         }
     }
+
+//    @GetMapping("/admin")
+//    @ResponseBody
+//    public String admin(@AuthenticationPrincipal CustomMemberDetailsService customMemberDetailsService){
+//
+//        return "Hello ";
+//
+//    }
 
     @GetMapping("/login")
     public String login(){

@@ -7,11 +7,11 @@
     <div class="row mt-4">
         <div class="col-md-6 offset-md-3">
             <h1 class="text-center">로그인</h1>
-            <form action="/member/login" method="post">
+            <div>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <div class="mb-3">
-                    <label for="email" class="form-label" >이메일 주소</label>
-                    <input type="email" class="form-control" id="email" name="username" required>
+                    <label for="username" class="form-label" >아이디</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">비밀번호</label>
@@ -24,7 +24,7 @@
                     <label>자동 로그인 <input type="checkbox" name="remember-me" id="rememberMe"></label>
                 </div>
                 <div style="margin-top: 10px">
-                    <button type="submit" class="btn btn-primary">로그인</button>
+                    <button onclick="login()" class="btn btn-primary">로그인</button>
                     <a href="/member/new" class="btn btn-secondary">회원가입</a>
                 </div>
                 <div>
@@ -34,10 +34,40 @@
                     </a>
                     <button>네이버 로그인</button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
+
+
+<script>
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+
+    const login = () => {
+        const formData = new URLSearchParams();
+        formData.append('username', username.value);
+        formData.append('password', password.value);
+
+        fetch("/auth/login", {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status == "OK"){
+                    location.href = "/"
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    };
+
+</script>
+
+
 <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript">
     Kakao.init('Javascript API KEY를 여기에 입력한다');

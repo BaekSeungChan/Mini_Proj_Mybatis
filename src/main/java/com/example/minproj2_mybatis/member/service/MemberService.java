@@ -41,6 +41,7 @@ public class MemberService implements UserDetailsService {
         MemberEntity member = memberMapper.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("해당 사용자가 없습니다."));
 
+        System.out.println("username : " + username);
         System.out.println("member : " + member);
 
         if(member != null){

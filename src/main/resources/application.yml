@@ -5,6 +5,8 @@ server:
     jsp:
       init-parameters:
         development: true
+    session:
+      tracking-modes: cookie
 
 
 spring:
