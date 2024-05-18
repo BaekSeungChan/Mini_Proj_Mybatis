@@ -4,11 +4,11 @@
 
 <mapper namespace="com.example.minproj2_mybatis.member.mapper.MemberMapper">
     <insert id="save" parameterType="member">
-        INSERT INTO MEMBER (name, email, password, address, role) VALUES (#{name}, #{email}, #{password}, #{address}, #{role})
+        INSERT INTO MEMBER (name,username, email, password, address, sex, role) VALUES (#{name}, #{username}, #{email}, #{password}, #{address}, #{sex}, #{role})
     </insert>
 
     <select id="findByUsername" resultType="member">
-        SELECT * FROM MEMBER WHERE name = #{name}
+        SELECT * FROM MEMBER WHERE username = #{username}
     </select>
 
     <select id="findAll" resultType="member">
@@ -22,4 +22,8 @@
     <select id="existsfindByEmail" resultType="boolean">
         SELECT COUNT(*) > 0 FROM MEMBER WHERE email = #{email}
     </select>
+
+    <update id="memberUpdate" parameterType="member">
+        UPDATE MEMBER SET email = #{email}, name= #{name} WHERE id = #{id}
+    </update>
 </mapper>

@@ -28,17 +28,27 @@
                     <a href="/member/new" class="btn btn-secondary">회원가입</a>
                 </div>
                 <div>
-                    <a href="javascript:kakaoLogin()">
-                        <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
-                             alt="카카오 로그인 버튼" />
-                    </a>
-                    <button>네이버 로그인</button>
+                    <button onclick="onNaverLogin()"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></button>
+                </div>
+                <div>
+                    <button onclick="onGoogleLogin()">
+                        <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png">
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<script>
+    const onNaverLogin = () => {
+        window.location.href = "http://localhost:8888/oauth2/authorization/naver"
+    }
+
+    const onGoogleLogin = () => {
+        window.location.href = "http://localhost:8888/oauth2/authorization/google"
+    }
+</script>
 
 <script>
     const username = document.getElementById("username");
@@ -66,7 +76,6 @@
     };
 
 </script>
-
 
 <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript">

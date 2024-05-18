@@ -1,7 +1,7 @@
 package com.example.minproj2_mybatis.member.entity;
 
+import com.example.minproj2_mybatis.auth.dto.request.MemberJoinRequest;
 import com.example.minproj2_mybatis.member.constant.Role;
-import com.example.minproj2_mybatis.member.dto.MemberDTO;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -15,11 +15,15 @@ public class MemberEntity {
 
     private String name;
 
+    private String username;
+
     private String email;
 
     private String password;
 
     private String address;
+
+    private String sex;
 
     private Role role;
 
@@ -27,13 +31,15 @@ public class MemberEntity {
 
     private String isDel;
 
-    public static MemberEntity createMember(MemberDTO memberDTO, PasswordEncoder passwordEncoder){
+    public static MemberEntity createMember(MemberJoinRequest request, PasswordEncoder passwordEncoder){
         return MemberEntity.builder()
-                .name(memberDTO.getName())
-                .email(memberDTO.getEmail())
-                .password(passwordEncoder.encode(memberDTO.getPassword()))
-                .address(memberDTO.getAddress())
-                .role(Role.USER)
+                .name(request.getName())
+                .username(request.getUsername())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .address(request.getAddress())
+                .sex(request.getSex())
+                .role(Role.ROLE_USER)
                 .build();
     }
 

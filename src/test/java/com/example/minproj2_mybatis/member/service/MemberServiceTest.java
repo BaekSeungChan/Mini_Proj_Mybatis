@@ -1,5 +1,6 @@
 package com.example.minproj2_mybatis.member.service;
 
+import com.example.minproj2_mybatis.auth.dto.request.MemberJoinRequest;
 import com.example.minproj2_mybatis.member.dto.MemberDTO;
 import com.example.minproj2_mybatis.member.entity.MemberEntity;
 
@@ -22,7 +23,7 @@ class MemberServiceTest {
     private PasswordEncoder passwordEncoder;
 
     public MemberEntity createMember(){
-        MemberDTO memberDTO = MemberDTO.builder()
+        MemberJoinRequest memberDTO = MemberJoinRequest.builder()
                 .address("경기도 성남시")
                 .name("백승찬")
                 .email("test@naver.com")

@@ -1,5 +1,7 @@
 package com.example.minproj2_mybatis.config;
 
+import com.example.minproj2_mybatis.auth.CustomSuccessHandler;
+import com.example.minproj2_mybatis.auth.service.CustomOAuth2UserService;
 import com.example.minproj2_mybatis.jwt.JWTFilter;
 import com.example.minproj2_mybatis.jwt.JWTUtil;
 import com.example.minproj2_mybatis.jwt.LoginFilter;
@@ -29,8 +31,11 @@ public class SecurityConfig {
 
     private final AuthenticationConfiguration authenticationConfiguration;
 
+    private final CustomSuccessHandler customSuccessHandler;
+
     private final JWTUtil jwtUtil;
 
+    private final CustomOAuth2UserService customOAuth2UserService;
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception{
         return configuration.getAuthenticationManager();
@@ -49,14 +54,28 @@ public class SecurityConfig {
                 .formLogin((auth) -> auth.disable())
                 .httpBasic((auth) -> auth.disable());
 
+        http
+                .addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
+
+
+        //oauth2
+        http
+                .oauth2Login((oauth2) -> oauth2
+                        .userInfoEndpoint((userInfoEndpointConfig) -> userInfoEndpointConfig
+                                .userService(customOAuth2UserService))
+                        .successHandler(customSuccessHandler)
+                );
 
 
         http.logout(logoutConfig ->
                         logoutConfig
                                 .logoutUrl("/member/logout")
                                 .logoutSuccessUrl("/")
-                                .deleteCookies("JSESSIONID")
+                                .deleteCookies("Authorization")
         );
+
+        http
+                .oauth2Login(Customizer.withDefaults());
 
         http.authorizeHttpRequests(request -> request
                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
@@ -65,9 +84,6 @@ public class SecurityConfig {
                 .requestMatchers("/","/member/**", "/board/list","/volume-rank", "/finance/**","/gpt/**", "/admin/**","/auth/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated());
-
-        http
-                .addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
 
         http
                 .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil, "/auth/login"), UsernamePasswordAuthenticationFilter.class);

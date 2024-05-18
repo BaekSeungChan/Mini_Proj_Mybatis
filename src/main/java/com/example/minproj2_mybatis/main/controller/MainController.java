@@ -26,6 +26,8 @@ public class MainController {
         String role = auth.getAuthority();
 
 
+        System.out.println("username : " + username);
+
         return "main";
     }
 }

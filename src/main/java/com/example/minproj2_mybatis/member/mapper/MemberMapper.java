@@ -17,6 +17,8 @@ public interface MemberMapper {
 
     void delete(Long id);
 
+    int memberUpdate(MemberEntity member);
+
     Boolean existsfindByEmail(String email);
 
 }

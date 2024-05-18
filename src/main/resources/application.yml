@@ -33,14 +33,14 @@ spring:
             client-name: naver
             client-id: ${naver_id} # Replace with actual client ID
             client-secret: ${naver_secret}  # Replace with actual client secret
-            redirect-uri: http://localhost:8080/login/oauth2/code/naver
+            redirect-uri: http://localhost:8888/login/oauth2/code/naver
             authorization-grant-type: authorization_code
             scope: name,email
           google:
             client-name: google
             client-id: ${google_id}  # Fill in your Google client ID
             client-secret:  ${google_secret} # Fill in your Google client secret
-            redirect-uri: http://localhost:8080/login/oauth2/code/google
+            redirect-uri: http://localhost:8888/login/oauth2/code/google
             authorization-grant-type: authorization_code
             scope: profile,email
         provider:

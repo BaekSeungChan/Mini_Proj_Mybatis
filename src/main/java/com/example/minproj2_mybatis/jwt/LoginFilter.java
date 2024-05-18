@@ -1,6 +1,6 @@
 package com.example.minproj2_mybatis.jwt;
 
-import com.example.minproj2_mybatis.member.dto.CustomMemberDetailsService;
+import com.example.minproj2_mybatis.auth.entity.CustomMemberDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
@@ -71,7 +71,6 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
                 " \"message\": \"success\"" +
                 "}";
         response.getWriter().write(jsonPayload);
-
 
     }
 

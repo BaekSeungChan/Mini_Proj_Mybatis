@@ -1,4 +1,4 @@
-package com.example.minproj2_mybatis.member.dto;
+package com.example.minproj2_mybatis.auth.entity;
 
 import com.example.minproj2_mybatis.member.entity.MemberEntity;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class CustomMemberDetailsService implements UserDetails {
+public class CustomMemberDetailsService implements UserDetails{
 
     private MemberEntity member;
 
