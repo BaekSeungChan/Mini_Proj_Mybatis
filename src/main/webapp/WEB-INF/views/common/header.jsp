@@ -44,6 +44,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/finance/list">금융소식</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/book/list">도서</a>
+                </li>
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item">
                         <a class="nav-link" href="/member/logout">Logout</a>
