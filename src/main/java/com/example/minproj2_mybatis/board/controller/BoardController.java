@@ -1,5 +1,6 @@
 package com.example.minproj2_mybatis.board.controller;
 
+import com.example.minproj2_mybatis.auth.entity.CustomMemberDetailsService;
 import com.example.minproj2_mybatis.board.dto.BoardDTO;
 import com.example.minproj2_mybatis.board.dto.PageDTO;
 import com.example.minproj2_mybatis.board.entity.BoardEntity;
@@ -9,6 +10,10 @@ import com.example.minproj2_mybatis.reply.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -75,7 +80,26 @@ public class BoardController {
     }
 
     @GetMapping("/write")
-    public String write(){
+    public String write(Model model, @AuthenticationPrincipal CustomMemberDetailsService customMemberDetailsService){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if(authentication != null && authentication.getPrincipal() instanceof UserDetails){
+//            CustomMemberDetailsService userDetails = (CustomMemberDetailsService) authentication.getPrincipal();
+//            String username = userDetails.getUsername();
+//            String name = userDetails.getName();
+//
+//            System.out.println("백username " + username);
+//            System.out.println("찬name " + name);
+//        }
+
+        if (customMemberDetailsService != null){
+            String username = customMemberDetailsService.getUsername();
+            String name = customMemberDetailsService.getName();
+
+            // 모델에 사용자 정보를 추가 (필요한 경우)
+            model.addAttribute("username", username);
+            model.addAttribute("name", name);
+        }
+
         return "board/write";
     }
 

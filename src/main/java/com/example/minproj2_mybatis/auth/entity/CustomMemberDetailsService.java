@@ -16,6 +16,8 @@ public class CustomMemberDetailsService implements UserDetails{
         this.member = member;
     }
 
+//    : MemberEntity(id=43, name=백승찬, username=qortmdcks95, email=bsc7386@likelion.org, password=$2a$10$vlPWP5PjiOytU2JpDpn63eKutCcbLnQYOnhs8ArCE.ej7NODtNEU6, address=경기도 성남시, sex=male, role=ROLE_USER, isUsed=Y, isDel=N)
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -41,8 +43,15 @@ public class CustomMemberDetailsService implements UserDetails{
 
     @Override
     public String getUsername() {
+        System.out.println("username112233 " + member.getUsername());
+        return member.getUsername();
+    }
+
+    public String getName() {
+        System.out.println("name112233 " + member.getName());
         return member.getName();
     }
+
 
     @Override
     public boolean isAccountNonExpired() {

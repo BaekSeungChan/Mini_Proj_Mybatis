@@ -15,7 +15,7 @@
         <div class="row mt-4">
             <div class="col-md-10 offset-md-1">
                 <div class="form-floating">
-                    <input type="text" name="writer" class="form-control"  value="${sessionScope.userInfo}" readonly>
+                    <input type="text" name="writer" class="form-control"  value="${name}" readonly>
                     <label class="form-label text-secondary">작성자</label>
                 </div>
             </div>

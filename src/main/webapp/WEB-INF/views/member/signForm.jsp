@@ -7,7 +7,16 @@
     <div class="row mt-4">
         <div class="col-md-6 offset-md-3">
             <h1 class="text-center">회원 가입</h1>
-            <form action="/member/new" method="post">
+            <div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">아이디</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">비밀번호</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                    <span id="errorPasswordContainer"></span>
+                </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">이름</label>
                     <input type="text" class="form-control" id="name" name="name" required>
@@ -18,32 +27,42 @@
                     <span id="errorEmailContainer"></span>
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">비밀번호</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                    <span id="errorPasswordContainer"></span>
-                </div>
-                <div class="mb-3">
                     <label for="address" class="form-label">주소</label>
                     <input type="text" class="form-control" id="address" name="address" required>
                 </div>
-                <button type="submit" class="btn btn-primary">가입하기</button>
-            </form>
+                <div class="mb-3">
+                    <label class="form-label">성별 : </label>
+                    <input type='radio' name='sex' value='female' />여성
+                    <input type='radio' name='sex' value='male' style="margin-left: 10px"/>남성
+                </div>
+                <button id="signUpButton" class="btn btn-primary">가입하기</button>
+            </div>
         </div>
     </div>
 </div>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
-
 <script>
-    const form = document.querySelector('form');
-    const errorPasswordContainer = document.getElementById('errorPasswordContainer');
-
-    const signUp = async (event) => {
+    document.getElementById('signUpButton').addEventListener('click', async (event) => {
         event.preventDefault();
 
-        const formData = new FormData(form);
-        const param = Object.fromEntries(formData.entries());
+        const errorPasswordContainer = document.getElementById('errorPasswordContainer');
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const address = document.getElementById("address").value;
+        const sex = document.querySelector('input[name="sex"]:checked').value;
+
+        const param = {
+            username: username,
+            password: password,
+            name: name,
+            email: email,
+            address: address,
+            sex: sex,
+        };
 
         try {
             const response = await fetch("/member/new", {
@@ -58,7 +77,7 @@
                 const error = await response.json();
                 console.error('Error:', error);
                 if (error.error != null) {
-                    alert(error.error)
+                    alert(error.error);
                 } else {
                     if (error.password != null) {
                         errorPasswordContainer.innerHTML = error.password;
@@ -74,7 +93,5 @@
         } catch (error) {
             console.error('Error:', error);
         }
-    };
-
-    form.addEventListener('submit', signUp);
+    });
 </script>

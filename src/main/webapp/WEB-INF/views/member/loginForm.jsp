@@ -28,11 +28,11 @@
                     <a href="/member/new" class="btn btn-secondary">회원가입</a>
                 </div>
                 <div>
-                    <button onclick="onNaverLogin()"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></button>
+                    <button onclick="onNaverLogin()">네이버 로그인</button>
                 </div>
                 <div>
                     <button onclick="onGoogleLogin()">
-                        <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png">
+                        구글 로그인
                     </button>
                 </div>
             </div>
