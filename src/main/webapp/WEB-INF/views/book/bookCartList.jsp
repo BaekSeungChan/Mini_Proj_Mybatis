@@ -59,7 +59,7 @@
                     <td>${book.quantity}</td>
                     <td>${book.discount * book.quantity}원</td>
                     <td>
-                        <button class="btn btn-primary" onclick="removeFromCart(${book.id})">삭제</button>
+                        <a href="/book/cart/remove?id=${book.id}"><button class="btn btn-primary">삭제</button></a>
                     </td>
                 </tr>
             </c:forEach>
@@ -83,20 +83,21 @@
         document.getElementById('totalPrice').textContent = totalPrice + '원';
     }
 
-    const removeFromCart = (id) => {
-        fetch(`/book/cart/remove/${id}`, {
-            method: 'DELETE'
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message === 'Success') {
-                    location.reload();
-                } else {
-                    alert('장바구니에서 제거하는 데 실패했습니다.');
-                }
-            })
-            .catch(error => console.error('Error:', error));
-    }
+    <%--const removeFromCart = (id) => {--%>
+    <%--    --%>
+    <%--    fetch(`/book/cart/remove?id=${id}`, {--%>
+    <%--        method: 'GET'--%>
+    <%--    })--%>
+    <%--        .then(response => response.json())--%>
+    <%--        .then(data => {--%>
+    <%--            if (data.message === 'Success') {--%>
+    <%--                location.reload();--%>
+    <%--            } else {--%>
+    <%--                alert('장바구니에서 제거하는 데 실패했습니다.');--%>
+    <%--            }--%>
+    <%--        })--%>
+    <%--        .catch(error => console.error('Error:', error));--%>
+    <%--}--%>
 
     const proceedToCheckout = () => {
         window.location.href = "/checkout";

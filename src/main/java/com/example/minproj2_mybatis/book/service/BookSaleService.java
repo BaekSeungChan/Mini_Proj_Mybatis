@@ -85,4 +85,7 @@ public class BookSaleService {
         return bookDTOS;
     }
 
+    public int delete(Long id) {
+        return bookCartMapper.deleteById(id);
+    }
 }

@@ -11,4 +11,6 @@ public interface BookCartMapper {
     int save(BookEntity book);
 
     List<BookEntity> findByName(String name);
+
+    int deleteById(Long id);
 }

@@ -10,4 +10,8 @@
     <select id="findByName" parameterType="String" resultType="book">
         SELECT * FROM  book WHERE username = #{username} ORDER BY id desc
     </select>
+
+    <delete id="deleteById" parameterType="Long">
+       DELETE FROM book WHERE id = #{id}
+    </delete>
 </mapper>

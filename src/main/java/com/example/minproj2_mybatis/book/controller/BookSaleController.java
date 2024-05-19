@@ -5,7 +5,6 @@ import com.example.minproj2_mybatis.book.dto.request.BookCartRequest;
 import com.example.minproj2_mybatis.book.dto.response.BookDTO;
 import com.example.minproj2_mybatis.book.service.BookSaleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -54,7 +53,6 @@ public class BookSaleController {
     public ResponseEntity<String> cartSave(@RequestBody BookCartRequest bookCartRequest) {
         int result = bookSaleService.save(bookCartRequest);
 
-        System.out.println("bookCartRequest :" + bookCartRequest);
         if (result > 0) {
             return ResponseEntity.ok("{\"message\": \"Success\"}");
         } else {
@@ -75,6 +73,13 @@ public class BookSaleController {
         model.addAttribute("books", bookDTOS);
 
         return "book/bookCartList";
+    }
+
+    @GetMapping("/cart/remove")
+    public String cartDelete(@RequestParam("id") Long id){
+        bookSaleService.delete(id);
+
+        return "redirect:/book/cart/list";
     }
 
 
