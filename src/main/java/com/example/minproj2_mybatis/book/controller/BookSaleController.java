@@ -82,5 +82,26 @@ public class BookSaleController {
         return "redirect:/book/cart/list";
     }
 
+    List<BookCartRequest> bookCartRequests = new ArrayList<>();
+
+    @GetMapping("/cart/orderInfo")
+    public String orderInfo(@RequestParam("id") List<Long> ids,
+                            @RequestParam("quantity") List<Integer> quantities,
+                            @RequestParam("title") List<String> titles,
+                            @RequestParam("discount") List<String> discounts,
+                            Model model){
+
+        List<BookCartRequest> selectedItems = new ArrayList<>();
+        for (int i = 0; i < ids.size(); i++) {
+            BookCartRequest item = new BookCartRequest();
+            item.setId(ids.get(i));
+            item.setQuantity(quantities.get(i));
+            item.setTitle(titles.get(i));
+            item.setDiscount(discounts.get(i));
+            selectedItems.add(item);
+        }
+        model.addAttribute("orders", selectedItems);
+        return "book/orderInfo";
+    }
 
 }

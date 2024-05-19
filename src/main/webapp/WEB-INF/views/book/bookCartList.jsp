@@ -50,7 +50,7 @@
             <c:forEach var="book" items="${books}" varStatus="status">
                 <tr>
                     <td>
-                        <input type="checkbox" class="select-item" data-id="${book.id}" onclick="updateTotalPrice()">
+                        <input type="checkbox" class="select-item" data-id="${book.id}" data-quantity="${book.quantity}" data-title="${book.title}" data-discount="${book.discount}" onclick="updateTotalPrice()">
                     </td>
                     <td class="title-cell">${book.title}</td>
                     <td>${book.author} / ${book.publisher}</td>
@@ -83,24 +83,30 @@
         document.getElementById('totalPrice').textContent = totalPrice + '원';
     }
 
-    <%--const removeFromCart = (id) => {--%>
-    <%--    --%>
-    <%--    fetch(`/book/cart/remove?id=${id}`, {--%>
-    <%--        method: 'GET'--%>
-    <%--    })--%>
-    <%--        .then(response => response.json())--%>
-    <%--        .then(data => {--%>
-    <%--            if (data.message === 'Success') {--%>
-    <%--                location.reload();--%>
-    <%--            } else {--%>
-    <%--                alert('장바구니에서 제거하는 데 실패했습니다.');--%>
-    <%--            }--%>
-    <%--        })--%>
-    <%--        .catch(error => console.error('Error:', error));--%>
-    <%--}--%>
-
     const proceedToCheckout = () => {
-        window.location.href = "/checkout";
+        const selectedItems = [];
+        document.querySelectorAll('.select-item:checked').forEach(checkbox => {
+            selectedItems.push({
+                id: checkbox.getAttribute('data-id'),
+                quantity: checkbox.getAttribute('data-quantity'),
+                title: checkbox.getAttribute('data-title'),
+                discount: checkbox.getAttribute('data-discount')
+            });
+        });
+
+        if (selectedItems.length > 0) {
+            const params = new URLSearchParams();
+            selectedItems.forEach(item => {
+                params.append('id', item.id);
+                params.append('quantity', item.quantity);
+                params.append('title', item.title);
+                params.append('discount', item.discount);
+            });
+
+            window.location.href = '/book/cart/orderInfo?' + params.toString();
+        } else {
+            alert('결제할 항목을 선택하세요.');
+        }
     }
 
     const toggleSelectAll = (selectAllCheckbox) => {

@@ -9,6 +9,7 @@ import lombok.*;
 @Getter
 public class BookCartRequest {
 
+    private Long id;
     private String username;
     private String title;
     private String link;
