@@ -18,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -73,6 +74,15 @@ public class BookSaleService {
     public int save(BookCartRequest request){
         BookEntity book = BookEntity.toEntity(request);
         return bookCartMapper.save(book);
+    }
+
+
+    public List<BookDTO> findByName(String name){
+        List<BookEntity> bookCarts = bookCartMapper.findByName(name);
+
+        List<BookDTO> bookDTOS = bookCarts.stream().map(book -> BookDTO.toDTO(book)).collect(Collectors.toList());
+
+        return bookDTOS;
     }
 
 }

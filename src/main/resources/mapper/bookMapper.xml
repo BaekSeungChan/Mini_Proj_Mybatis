@@ -7,7 +7,7 @@
         INSERT INTO book (username, title, link, author, discount, publisher, isbn, quantity) VALUES (#{username}, #{title}, #{link}, #{author}, #{discount}, #{publisher}, #{isbn}, #{quantity})
     </insert>
 
-<!--    <select id="findAll" parameterType="Long" resultType="reply">-->
-<!--        SELECT * FROM  reply_table WHERE boardId = #{boardId} ORDER BY id desc-->
-<!--    </select>-->
+    <select id="findByName" parameterType="String" resultType="book">
+        SELECT * FROM  book WHERE username = #{username} ORDER BY id desc
+    </select>
 </mapper>

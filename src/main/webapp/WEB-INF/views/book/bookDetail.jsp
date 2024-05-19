@@ -101,7 +101,7 @@
     }
 
     const redirectToCart = () => {
-        window.location.href = "/cart";
+        window.location.href = "/book/cart/list";
     }
 
     const redirectToCheckout = () => {

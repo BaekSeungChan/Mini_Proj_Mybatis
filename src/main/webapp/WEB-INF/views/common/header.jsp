@@ -49,7 +49,7 @@
             <ul class="navbar-nav ms-auto">
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item">
-                        <a class="nav-link nav-icon" href="/member/shop">
+                        <a class="nav-link nav-icon" href="/book/cart/list">
                             <i class="fas fa-shopping-cart"></i>
                         </a>
                     </li>

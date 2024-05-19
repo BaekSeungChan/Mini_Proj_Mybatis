@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -61,5 +62,20 @@ public class BookSaleController {
         }
     }
 
-//    BookCartRequest(username=naver zZG5DNld3I3BpbU3nvgamuPQ1UJUA9qbDyC7Y7q0l3Q, title=2024 SD에듀 투자자산운용사 실제유형 모의고사+특별부록 PASSCODE Premium ver 6.0 (24년 기본서 개정사항 및 기출분석(19년 ~ 23년 + 24년 3월 시험) 완벽 반영 / 프리미엄 강의노트(2회분) / 특별부록Ⅰ 빈출포인트 O/X퀴즈 + Ⅱ 실제유형문제 추가 풀(100문항)), link=https://search.shopping.naver.com/book/catalog/47016218622, image=https://shopping-phinf.pstatic.net/main_4701621/47016218622.20240414071108.jpg, author=유창호, discount=49500, publisher=시대고시기획, pubdate=20240506, isbn=9791138371407, quantity=1)
+    @GetMapping("/cart/list")
+    public String cartList(Model model, @AuthenticationPrincipal CustomMemberDetailsService customMemberDetailsService){
+
+        List<BookDTO> bookDTOS = new ArrayList<>();
+
+        if(customMemberDetailsService != null){
+            String name = customMemberDetailsService.getName();
+            bookDTOS = bookSaleService.findByName(name);
+        }
+
+        model.addAttribute("books", bookDTOS);
+
+        return "book/bookCartList";
+    }
+
+
 }
