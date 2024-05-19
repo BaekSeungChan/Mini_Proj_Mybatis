@@ -6,5 +6,6 @@
         <typeAlias type="com.example.minproj2_mybatis.board.entity.BoardEntity" alias="board" />
         <typeAlias type="com.example.minproj2_mybatis.member.entity.MemberEntity" alias="member" />
         <typeAlias type="com.example.minproj2_mybatis.reply.entity.ReplyEntity" alias="reply" />
+        <typeAlias type="com.example.minproj2_mybatis.book.entity.BookEntity" alias="book" />
     </typeAliases>
 </configuration>

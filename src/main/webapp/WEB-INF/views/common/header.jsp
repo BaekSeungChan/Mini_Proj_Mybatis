@@ -2,25 +2,23 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
-    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">--%>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/cerulean/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-
-
     <style>
         .empty-space {
             height: 20px;
         }
-
         .navbar {
             height: 70px;
+        }
+        .nav-icon {
+            font-size: 1.5rem;
         }
     </style>
 </head>
@@ -47,6 +45,22 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/book/list">도서</a>
                 </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <sec:authorize access="isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link nav-icon" href="/member/shop">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                    </li>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link nav-icon" href="/member/myprofile">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </li>
+                </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item">
                         <a class="nav-link" href="/member/logout">Logout</a>
@@ -71,3 +85,6 @@
     </div>
 </nav>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -4,7 +4,8 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <div class="container mt-5">
-    <div class="row">
+    <h1 class="text-center">금융 도서관</h1>
+    <div class="row mt-5">
         <c:forEach var="book" items="${books}" varStatus="status">
         <div class="col-md-3 mb-4">
             <div class="card h-100 d-flex flex-column">

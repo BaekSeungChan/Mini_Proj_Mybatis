@@ -1,10 +1,14 @@
 package com.example.minproj2_mybatis.book.service;
 
+import com.example.minproj2_mybatis.book.dto.request.BookCartRequest;
 import com.example.minproj2_mybatis.book.dto.response.BookDTO;
 import com.example.minproj2_mybatis.book.dto.response.ResponseBookDTO;
+import com.example.minproj2_mybatis.book.entity.BookEntity;
+import com.example.minproj2_mybatis.book.mapper.BookCartMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +20,10 @@ import java.net.URI;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BookSaleService {
+
+    private final BookCartMapper bookCartMapper;
     
     @Value("${X-Naver-Client-Id}")
     private String client_id;
@@ -60,6 +67,12 @@ public class BookSaleService {
         List<BookDTO> books = responseBookDTO.getItems();
 
         return books;
+    }
+
+
+    public int save(BookCartRequest request){
+        BookEntity book = BookEntity.toEntity(request);
+        return bookCartMapper.save(book);
     }
 
 }

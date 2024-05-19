@@ -52,7 +52,6 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         CustomMemberDetailsService customUserDetails = (CustomMemberDetailsService) authentication.getPrincipal();
 
         String username = customUserDetails.getUsername();
-        System.out.println("aaa " + username);
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         Iterator<? extends  GrantedAuthority> iterator = authorities.iterator();
