@@ -7,13 +7,16 @@
     <div class="row">
         <c:forEach var="book" items="${books}" varStatus="status">
         <div class="col-md-3 mb-4">
-            <div class="card h-100">
+            <div class="card h-100 d-flex flex-column">
                 <img src="${book.image}" class="card-img-top" alt="${book.title}" style="height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="${book.link}">${book.title}</a></h5>
+                <div class="card-body flex-grow-1">
+                    <h6 class="card-title">${book.title}</h6>
                     <p class="card-text">${book.author} / ${book.publisher}</p>
                     <p class="card-text"><small class="text-muted">출판일: ${book.pubdate}</small></p>
                     <p class="card-text"><small class="text-muted">ISBN: ${book.isbn}</small></p>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <a href="/book/detail?title=${book.title}" class="btn btn-primary w-100">상세보기</a>
                 </div>
             </div>
         </div>

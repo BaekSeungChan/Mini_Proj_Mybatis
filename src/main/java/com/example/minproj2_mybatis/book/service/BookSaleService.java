@@ -24,9 +24,8 @@ public class BookSaleService {
     @Value("${X-Naver-Client-Secret}")
     private String secret_id;
 
-    private String text = "금융";
 
-    public List<BookDTO> bookDTOList(){
+    public List<BookDTO> bookDTOList(String text){
 
         URI uri = UriComponentsBuilder
                 .fromUriString("https://openapi.naver.com")
