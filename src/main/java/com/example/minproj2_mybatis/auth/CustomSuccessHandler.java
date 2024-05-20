@@ -24,16 +24,19 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         String username;
+        String name;
         String role;
 
         Object principal = authentication.getPrincipal();
         if(principal instanceof CustomMemberDetailsService){
             CustomMemberDetailsService memberDetail = (CustomMemberDetailsService) principal;
             username = memberDetail.getUsername();
+            name = memberDetail.getName();
             role = memberDetail.getAuthorities().iterator().next().getAuthority();
         } else if (principal instanceof CustomOAuth2User){
             CustomOAuth2User oAuth2User = (CustomOAuth2User) principal;
 
+            name = oAuth2User.getName();
             username = oAuth2User.getUsername();
             role = oAuth2User.getAuthorities().iterator().next().getAuthority();
 
@@ -41,7 +44,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
             throw  new IllegalStateException("Unexpected principal");
         }
 
-        String token = jwtUtil.createJwt(username, role, 60 * 60 * 60L);
+        String token = jwtUtil.createJwt(username, name, role, 60 * 60 * 60L);
 
         response.addCookie(createCookie("Authorization", token));
         response.sendRedirect("/");

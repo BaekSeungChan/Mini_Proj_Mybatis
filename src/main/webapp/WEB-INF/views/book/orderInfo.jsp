@@ -105,6 +105,77 @@
         <button class="btn btn-primary">결제하기</button>
     </div>
 </div>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+
+
+<script>
+
+</script>
+
+<%--<script>--%>
+<%--    document.addEventListener('DOMContentLoaded', function() {--%>
+<%--        var merchant_uid = "O" + new Date().getTime();--%>
+<%--        var totalPrice = document.getElementById('totalPrice').textContent.replace('원', '').trim();--%>
+
+<%--        fetch('/payment/prepare', {--%>
+<%--            method: 'POST',--%>
+<%--            headers: {--%>
+<%--                'Content-Type': 'application/json'--%>
+<%--            },--%>
+<%--            body: JSON.stringify({--%>
+<%--                merchant_uid: merchant_uid, // 가맹점 주문번호--%>
+<%--                amount: totalPrice // 결제 예정금액--%>
+<%--            })--%>
+<%--        })--%>
+<%--            .then(response => response.json())--%>
+<%--            .then(data => {--%>
+<%--                console.log('결제 준비 완료:', data);--%>
+<%--            })--%>
+<%--            .catch(error => {--%>
+<%--                console.error('결제 준비 중 오류 발생:', error);--%>
+<%--            });--%>
+<%--    })--%>
+<%--</script>--%>
+<script>
+    const orderBtn = () => {
+        var username = document.getElementById('customerName');
+        var bookName = ${book.title}
+        var post = document.getElementById('shippingZip');
+        var addr = document.getElementById('shippingAddress');
+        var phone = document.getElementById('shippingPhone');
+        var merchant_uid = "0" + new Date().getTime(); // 고유한 주문번호 생성
+
+        var IMP = window.IMP;
+        IMP.init('imp37653765'); // 가맹점 식별코드 입력
+
+        IMP.request_pay({
+            pg: "html5_inicis",           // 등록된 pg사 (적용된 pg사는 KG이니시스)
+            pay_method: "card",           // 결제방식: card(신용카드), trans(실시간계좌이체), vbank(가상계좌), phone(소액결제)
+            merchant_uid: merchant_uid,   // 주문번호
+            name: ${order.title},                  // 상품명
+            amount: totalPrice,           // 금액
+            buyer_name: username,         // 주문자
+            buyer_tel: phone,             // 전화번호 (필수입력)
+            buyer_addr: addr,    		  // 주소
+            buyer_postcode: post          // 우편번호
+
+            }, function (rsp) {
+                if (rsp.success) {
+                    var mesg = '결제가 완료되었습니다.';
+
+                    // 겅증 후 결제 정보 & 주문 정보 DB 저장
+
+                } else {
+                    var mesg = '결제를 실패하였습니다.';
+                    alert(msg);
+                }
+            }
+        );
+
+
+    }
+
+</script>
 
 <script>
     const updateTotalPrice = () => {

@@ -52,13 +52,14 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         CustomMemberDetailsService customUserDetails = (CustomMemberDetailsService) authentication.getPrincipal();
 
         String username = customUserDetails.getUsername();
+        String name = customUserDetails.getName();
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         Iterator<? extends  GrantedAuthority> iterator = authorities.iterator();
         GrantedAuthority auth = iterator.next();
 
         String role = auth.getAuthority();
-        String token = jwtUtil.createJwt(username, role, 60*60*1000L);
+        String token = jwtUtil.createJwt(username, name, role, 60*60*1000L);
 
         response.addCookie(createCookie("Authorization", token));
         response.setStatus(HttpServletResponse.SC_OK);

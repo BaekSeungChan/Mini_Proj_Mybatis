@@ -1,6 +1,8 @@
 package com.example.minproj2_mybatis.auth.entity;
 
 import com.example.minproj2_mybatis.member.entity.MemberEntity;
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -8,12 +10,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 
+@ToString
+@Slf4j
 public class CustomMemberDetailsService implements UserDetails{
 
     private MemberEntity member;
 
     public CustomMemberDetailsService(MemberEntity member){
         this.member = member;
+
+        log.info("생성자 {}", this);
     }
 
 //    : MemberEntity(id=43, name=백승찬, username=qortmdcks95, email=bsc7386@likelion.org, password=$2a$10$vlPWP5PjiOytU2JpDpn63eKutCcbLnQYOnhs8ArCE.ej7NODtNEU6, address=경기도 성남시, sex=male, role=ROLE_USER, isUsed=Y, isDel=N)
@@ -43,12 +49,11 @@ public class CustomMemberDetailsService implements UserDetails{
 
     @Override
     public String getUsername() {
-        System.out.println("username112233 " + member.getUsername());
         return member.getUsername();
     }
 
     public String getName() {
-        System.out.println("name112233 " + member.getName());
+
         return member.getName();
     }
 

@@ -5,8 +5,10 @@ import com.example.minproj2_mybatis.book.dto.request.BookCartRequest;
 import com.example.minproj2_mybatis.book.dto.response.BookDTO;
 import com.example.minproj2_mybatis.book.service.BookSaleService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/book")
 @RequiredArgsConstructor
+@Slf4j
 public class BookSaleController {
 
     private final BookSaleService bookSaleService;
@@ -33,10 +36,13 @@ public class BookSaleController {
     }
 
     @GetMapping("/detail")
-    public String bookDetail(@RequestParam("title") String title, Model model, @AuthenticationPrincipal CustomMemberDetailsService customMemberDetailsService) {
+    public String bookDetail(@RequestParam("title") String title, Model model, Authentication authentication) {
 
+        CustomMemberDetailsService customMemberDetailsService = (CustomMemberDetailsService) authentication.getPrincipal();
         List<BookDTO> bookDTOList = bookSaleService.bookDTOList(title);
 
+        log.info("customMemberDetailsService = {} ", customMemberDetailsService );
+        log.info("authentication.getPrincipal = {} ", authentication.getPrincipal().getClass() );
 
         if (!bookDTOList.isEmpty() || customMemberDetailsService != null) {
             String name = customMemberDetailsService.getName();
@@ -89,6 +95,7 @@ public class BookSaleController {
                             @RequestParam("quantity") List<Integer> quantities,
                             @RequestParam("title") List<String> titles,
                             @RequestParam("discount") List<String> discounts,
+                            @AuthenticationPrincipal CustomMemberDetailsService customMemberDetailsService,
                             Model model){
 
         List<BookCartRequest> selectedItems = new ArrayList<>();
@@ -100,6 +107,9 @@ public class BookSaleController {
             item.setDiscount(discounts.get(i));
             selectedItems.add(item);
         }
+
+
+        model.addAttribute("user", customMemberDetailsService.getName());
         model.addAttribute("orders", selectedItems);
         return "book/orderInfo";
     }

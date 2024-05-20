@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+
 public class CustomMemberService implements UserDetailsService {
 
     private final MemberMapper memberMapper;

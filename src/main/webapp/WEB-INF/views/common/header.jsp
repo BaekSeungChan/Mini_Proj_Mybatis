@@ -56,7 +56,7 @@
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item">
-                        <a class="nav-link nav-icon" href="/member/myprofile">
+                        <a class="nav-link nav-icon" href="/myprofile/page">
                             <i class="fas fa-user"></i>
                         </a>
                     </li>

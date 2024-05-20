@@ -8,9 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/myprofile")
 public class MyProfileController {
 
-    @GetMapping("/")
+    @GetMapping("/page")
     public String profilePage(){
 
-        return null;
+        return "member/myprofile";
+    }
+
+    @GetMapping("/edit")
+    public String profileEdit(){
+
+        return "member/profileEdit";
     }
 }

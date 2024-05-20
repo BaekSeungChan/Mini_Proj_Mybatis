@@ -53,18 +53,27 @@ public class JWTFilter extends OncePerRequestFilter {
                 return;
             }
 
+            String name = jwtUtil.getName(token);
             String username = jwtUtil.getUsername(token);
             String role = jwtUtil.getRole(token);
 
-            MemberEntity member = MemberEntity.builder()
-                    .name(username)
-                    .role(Role.valueOf(role))
-                    .build();
+            try {
+                Role userRole = Role.valueOf(role);
 
-            CustomMemberDetailsService customUserDetails = new CustomMemberDetailsService(member);
+                MemberEntity member = MemberEntity.builder()
+                        .name(name)
+                        .username(username)
+                        .role(userRole)
+                        .build();
 
-            Authentication authToken = new UsernamePasswordAuthenticationToken(customUserDetails, null, customUserDetails.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authToken);
+                CustomMemberDetailsService customUserDetails = new CustomMemberDetailsService(member);
+
+                Authentication authToken = new UsernamePasswordAuthenticationToken(customUserDetails, null, customUserDetails.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(authToken);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid role in token: " + role);
+            }
 
             filterChain.doFilter(request, response);
         } catch (ExpiredJwtException e) {
