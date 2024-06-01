@@ -58,6 +58,7 @@
             </tbody>
         </table>
     </div>
+
     <div class="customer-info">
         <h4>고객 정보</h4>
         <div class="form-group">
@@ -77,10 +78,12 @@
             <input type="text" class="form-control" id="customerPhone">
         </div>
     </div>
+
     <div class="form-check mt-3">
         <input type="checkbox" class="form-check-input" id="sameAddress" onclick="copyCustomerInfo()">
         <label class="form-check-label">배송지가 동일할 경우 선택하세요.</label>
     </div>
+
     <div class="shipping-info">
         <h4>배송지 정보</h4>
         <div class="form-group">
@@ -100,91 +103,170 @@
             <input type="text" class="form-control" id="shippingPhone">
         </div>
     </div>
+
     <div class="text-right mt-3">
         <h4 class="total-price">총 결제 금액: <span id="totalPrice">0원</span></h4>
-        <button class="btn btn-primary">결제하기</button>
+        <button class="btn btn-primary" onclick="orderBtn()">결제하기</button>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 
-
 <script>
+    $(document).ready(function () {
+        updateTotalPrice();
 
-</script>
+        const merchant_uid = "O" + new Date().getTime();
+        const totalPrice = parseInt($("#totalPrice").text().replace(/,/g, '').replace('원', '').trim());
 
-<%--<script>--%>
-<%--    document.addEventListener('DOMContentLoaded', function() {--%>
-<%--        var merchant_uid = "O" + new Date().getTime();--%>
-<%--        var totalPrice = document.getElementById('totalPrice').textContent.replace('원', '').trim();--%>
+        fetch('/payment/prepare', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                merchant_uid: merchant_uid,
+                amount: totalPrice
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('결제 준비 완료:', data);
+            })
+            .catch(error => {
+                console.error('결제 준비 중 오류 발생:', error);
+            });
+    });
 
-<%--        fetch('/payment/prepare', {--%>
-<%--            method: 'POST',--%>
-<%--            headers: {--%>
-<%--                'Content-Type': 'application/json'--%>
-<%--            },--%>
-<%--            body: JSON.stringify({--%>
-<%--                merchant_uid: merchant_uid, // 가맹점 주문번호--%>
-<%--                amount: totalPrice // 결제 예정금액--%>
-<%--            })--%>
-<%--        })--%>
-<%--            .then(response => response.json())--%>
-<%--            .then(data => {--%>
-<%--                console.log('결제 준비 완료:', data);--%>
-<%--            })--%>
-<%--            .catch(error => {--%>
-<%--                console.error('결제 준비 중 오류 발생:', error);--%>
-<%--            });--%>
-<%--    })--%>
-<%--</script>--%>
-<script>
     const orderBtn = () => {
-        var username = document.getElementById('customerName');
-        var bookName = ${book.title}
-        var post = document.getElementById('shippingZip');
-        var addr = document.getElementById('shippingAddress');
-        var phone = document.getElementById('shippingPhone');
-        var merchant_uid = "0" + new Date().getTime(); // 고유한 주문번호 생성
+        const username = document.getElementById('customerName').value;
+        const bookName = Array.from(document.querySelectorAll('tbody tr')).map(row => row.querySelector('.title-cell').textContent).join(', ');
+        const post = document.getElementById('shippingZip').value;
+        const addr = document.getElementById('shippingAddress').value;
+        const phone = document.getElementById('shippingPhone').value;
+        const totalPrice = parseInt(document.getElementById('totalPrice').textContent.replace(/,/g, '').replace('원', '').trim());
+        const merchant_uid = "0" + new Date().getTime();
 
-        var IMP = window.IMP;
-        IMP.init('imp37653765'); // 가맹점 식별코드 입력
+        const IMP = window.IMP;
+        IMP.init('imp37653765');
 
         IMP.request_pay({
-            pg: "html5_inicis",           // 등록된 pg사 (적용된 pg사는 KG이니시스)
-            pay_method: "card",           // 결제방식: card(신용카드), trans(실시간계좌이체), vbank(가상계좌), phone(소액결제)
-            merchant_uid: merchant_uid,   // 주문번호
-            name: ${order.title},                  // 상품명
-            amount: totalPrice,           // 금액
-            buyer_name: username,         // 주문자
-            buyer_tel: phone,             // 전화번호 (필수입력)
-            buyer_addr: addr,    		  // 주소
-            buyer_postcode: post          // 우편번호
-
-            }, function (rsp) {
-                if (rsp.success) {
-                    var mesg = '결제가 완료되었습니다.';
-
-                    // 겅증 후 결제 정보 & 주문 정보 DB 저장
-
-                } else {
-                    var mesg = '결제를 실패하였습니다.';
-                    alert(msg);
-                }
+            pg: "html5_inicis",
+            pay_method: "card",
+            merchant_uid: merchant_uid,
+            name: bookName,
+            amount: totalPrice,
+            buyer_name: username,
+            buyer_tel: phone,
+            buyer_addr: addr,
+            buyer_postcode: post
+        }, function (rsp) {
+            if (rsp.success) {
+                $.ajax({
+                    url: "payment/validate",
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        imp_uid: rsp.imp_uid,
+                        merchant_uid: rsp.merchant_uid,
+                    }),
+                }).done(function (data){
+                    handlePaymentSuccess(rsp)
+                })
+            } else {
+                alert('결제를 실패하였습니다.');
             }
-        );
-
-
+        });
     }
 
-</script>
+    const handlePaymentSuccess = (rsp) => {
+        // console.log("1 : ", rsp.merchant_uid)
+        // console.log("2 : ", rsp.buyer_name)
+        // console.log("3 : ", rsp.pay_method)
+        // console.log("4 : ", rsp.name)
+        // console.log("5 : ", rsp.paid_amount)
+        // console.log("6 : ", rsp.buyer_tel)
+        // console.log("7 : ", rsp.buyer_addr)
+        // console.log("8 : ", rsp.buyer_postcode)
 
-<script>
+        // const buyerInfo = {
+        //     "merchant_uid": rsp.merchant_uid,
+        //     "userid": rsp.buyer_name,
+        //     "pay_method": rsp.pay_method,
+        //     "name": rsp.name,
+        //     "amount": rsp.paid_amount,
+        //     "phone": rsp.buyer_tel,
+        //     "addr": rsp.buyer_addr,
+        //     "post": rsp.buyer_postcode
+        // };
+        //
+        // $.ajax({
+        //     type: "post",
+        //     url: "save_buyerInfo",
+        //     contentType: "application/json",
+        //     data: JSON.stringify(buyerInfo),
+        //     success: function (response) {
+        //         console.log("결제정보 저장 완료");
+        //     }
+        // });
+
+        const orderInfo = {
+            "merchant_uid": rsp.merchant_uid,
+            "userid": rsp.buyer_name,
+            "book_title": rsp.name,
+            "book_price": rsp.paid_amount,
+            "quantity": 1,
+            "recipient": rsp.buyer_name,
+            "post": rsp.buyer_postcode,
+            "addr": rsp.buyer_addr,
+            "phone": rsp.buyer_tel
+        };
+
+        console.log("merchant_uid : ", rsp.merchant_uid)
+        console.log("userid : ", rsp.buyer_name)
+        console.log("book_title : ", rsp.name)
+        console.log("book_price : ", rsp.paid_amount)
+        console.log("recipient : ", rsp.buyer_name)
+        console.log("post : ", rsp.buyer_postcode)
+        console.log("addr : ", rsp.buyer_addr)
+        console.log("phone : ", rsp.buyer_tel)
+
+
+        $.ajax({
+            type: "post",
+            url: "save_orderInfo",
+            contentType: "application/json",
+            data: JSON.stringify(orderInfo),
+            success: function (response) {
+                console.log("주문완료");
+                Swal.fire({
+                    text: '결제가 완료되었습니다.',
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    button: {
+                        text: '확인',
+                        closeModal: true
+                    }
+                }).then(() => {
+                    window.location.href = 'orderDone?merchant_uid=' + response;
+                });
+            }
+        });
+    }
+
     const updateTotalPrice = () => {
         let totalPrice = 0;
         document.querySelectorAll('tbody tr').forEach(row => {
-            const total = parseInt(row.cells[3].textContent.replace('원', ''));
+            const total = parseInt(row.cells[3].textContent.replace(/,/g, '').replace('원', '').trim());
             totalPrice += total;
         });
-        document.getElementById('totalPrice').textContent = totalPrice + '원';
+        document.getElementById('totalPrice').textContent = totalPrice.toLocaleString() + '원';
     }
 
     const copyCustomerInfo = () => {

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.minproj2_mybatis.pay.mapper.PrePaymentMapper">
+    <insert id="save" parameterType="pay">
+        INSERT INTO pre_payment (merchant_uid, amount)
+        VALUES (#{merchant_uid}, #{amount})
+    </insert>
+
+<!--    <select id="findAll" parameterType="Long" resultType="pay">-->
+<!--        SELECT * FROM  reply_table WHERE boardId = #{boardId} ORDER BY id desc-->
+<!--    </select>-->
+</mapper>

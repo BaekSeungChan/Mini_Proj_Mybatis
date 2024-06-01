@@ -48,11 +48,18 @@ public class MemberController {
         try {
 
             MemberEntity member = MemberEntity.createMember(request, passwordEncoder);
+
+            Map<String, Object> result = null;
+
             int successResult = memberService.save(member);
 
-            Map<String, Object> result  = new HashMap<>();
+            if(successResult > 0){
+
+            result  = new HashMap<>();
 
             result.put("SUCCESS", successResult);
+            }
+
 
             return ResponseEntity.ok(result);
 
